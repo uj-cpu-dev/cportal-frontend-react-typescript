@@ -1,0 +1,15 @@
+.header-container{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.header-container-btn{
+    background: #2681FF;
+    color: #fff;
+    padding:7px 20px;
+    border:none;
+    border-radius: 10px;
+    cursor: pointer;
+}
