@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cportal-react-app-deployment
+  labels:
+    app: cportal-react-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cportal-react-app
+  template:
+    metadata:
+      labels:
+        app: cportal-react-app
+    spec:
+      containers:
+        - name: cportal-react-app
+          image: ujdev448/cportal-frontend-react-typescript:latest
+          ports:
+            - containerPort: 3000
