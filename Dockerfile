@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 
 # Install the dependencies
-RUN npm ci
+RUN npm ci --loglevel verbose
 
 # Copy the rest of the application code to the working directory
 COPY . .
