@@ -82,6 +82,8 @@ jobs:
         run: aws eks --region ${{ secrets.AWS_REGION }} update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }}
 
       - name: Deploy to Kubernetes
-        run: kubectl apply -f .
+        run: |
+          kubectl apply -f deployment.yaml
+          kubectl apply -f service.yaml
         env:
           KUBECONFIG: $HOME/.kube/config
