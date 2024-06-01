@@ -7,7 +7,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Push image and deploy
-        uses: ujdev448/cportal-frontend-react-typescript
+        uses: observian/littleci-littlecd-eks@master
         with:
           access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret_access_key: ${{ secrets.SECRET_ACCESS_KEY }}
