@@ -62,11 +62,20 @@ jobs:
           aws eks --region $AWS_REGION update-kubeconfig --name $EKS_CLUSTER_NAME
           kubectl config view
 
-      - name: Deploy to EKS
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ steps.commit.outputs.short }}
+      - name: Show IMAGE_TAG value
+        run: echo $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+      - name: Show deployment.yaml before sed
+        run: cat deployment.yaml
+
+      - name: Replace image tag in deployment.yaml
         run: |
           sed -i.bak "s|DOCKER_IMAGE|$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG|g" deployment.yaml
+
+      - name: Show deployment.yaml after sed
+        run: cat deployment.yaml
+
+      - name: Deploy to EKS
+        run: |
           kubectl apply -f deployment.yaml --validate=false
           kubectl apply -f service.yaml --validate=false
