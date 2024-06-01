@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: cportal-react-app
-          image: DOCKER_IMAGE
+          image: IMAGE_TAG_PLACEHOLDER
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
