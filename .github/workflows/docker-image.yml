@@ -7,7 +7,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Push image and deploy
-        uses: Dockerfile
+        uses: /Dockerfile
         with:
           access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret_access_key: ${{ secrets.SECRET_ACCESS_KEY }}
