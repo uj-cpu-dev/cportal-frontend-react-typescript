@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: cportal-react-app
-          image: $ECR_REGISTRY/$ECR_REPOSITORY:${IMAGE_TAG}
+          image: ujdev448/cportal-frontend-react-typescript:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
