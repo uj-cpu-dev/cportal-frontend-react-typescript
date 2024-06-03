@@ -1,0 +1,14 @@
+name: CI/CD pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    uses: .build-and-test.yml
+
+  docker:
+    needs: build-and-test
+    uses: .docker.yml
