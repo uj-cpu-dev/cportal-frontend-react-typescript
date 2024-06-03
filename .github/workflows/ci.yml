@@ -14,8 +14,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build and Test
-        uses: ./.github/workflows/actions/build-and-test.yml
+        uses: .github/workflows/actions/build-and-test.yml
 
       - name: Docker
-        uses: ./.github/workflows/actions/docker.yml
+        uses: .github/workflows/actions/docker.yml
 
