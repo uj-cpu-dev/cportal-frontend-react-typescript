@@ -7,7 +7,7 @@ const Navbar:React.FC = () => {
     return(
         <div className={'navbar-container'}>
             <div className={'navbar-logo-content'}>
-                <img src={LogoImage} alt={'comp-logo'} />
+                <img src={LogoImage} alt={'comp-logo'} data-testid={'comp-logo'} />
                 <h2> UJ-Portal </h2>
             </div>
             <Search />

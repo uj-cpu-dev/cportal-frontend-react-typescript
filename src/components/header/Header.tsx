@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from "../control/Button";
+import Button from "../control/Button/Button";
 import './header.css'
 
 const Header:React.FC = () => {
