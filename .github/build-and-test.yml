@@ -1,9 +1,16 @@
 steps:
-  - uses: actions/checkout@v4
-  - uses: actions/setup-node@v3
+  - name: Checkout
+    uses: actions/checkout@v4
+
+  - name: Set up Node.js
+    uses: actions/setup-node@v3
     with:
       node-version: '16'
-  - run: |
-      npm install
-      npm run build
-      npm run test
+
+  - name: Install dependencies and build
+    run: |
+     npm install
+     npm run build
+
+  - name: Run tests
+    run: npm run test
