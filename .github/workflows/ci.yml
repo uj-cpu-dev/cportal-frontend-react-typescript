@@ -9,9 +9,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - include: build-and-test.yml
+      - include: ../build-and-test.yml
 
   docker:
     runs-on: ubuntu-latest
     steps:
-      - include: docker.yaml
+      - include: ../docker.yml
