@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI/CD pipeline
 
 on:
   push:
@@ -6,12 +6,10 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - include: ../build-and-test.yml
+  build-and-test:
+    uses: ./.github/build-and-test.yml
 
   docker:
-    runs-on: ubuntu-latest
-    steps:
-      - include: ../docker.yml
+    needs: build-and-test
+    uses: ./.github/docker.yml
+
