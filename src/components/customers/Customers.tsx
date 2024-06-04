@@ -1,6 +1,7 @@
 import React from 'react';
-import './customers.css'
+import './customers.css';
 import Select from "../control/select/Select";
+import CustomersList from "./customersList/CustomersList";
 
 const Customers:React.FC = () => {
     return(
@@ -9,6 +10,7 @@ const Customers:React.FC = () => {
                 options={["Newest", "Oldest"]}
                 additionalClassName={'customer-select'}
             />
+            <CustomersList />
         </div>
     )
 }
