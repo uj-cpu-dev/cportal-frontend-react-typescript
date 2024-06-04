@@ -1,4 +1,4 @@
-import React, { createContext, useContext, FC } from 'react';
+import React, { createContext, FC } from 'react';
 
 interface contextProps {
     children: React.ReactNode;
@@ -14,6 +14,6 @@ const AppContext:FC<contextProps> = ({children}) => {
     )
 }
 
-const useGlobalContext = () => useContext(GlobalContext);
+//const useGlobalContext = () => useContext(GlobalContext);
 
 export default AppContext;
