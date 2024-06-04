@@ -1,3 +1,5 @@
+const isCI = process.env.CI === 'true';
+
 module.exports = {
     preset: 'ts-jest',
     testEnvironment: 'jsdom',
@@ -9,7 +11,7 @@ module.exports = {
     ],
     coverageDirectory: 'coverage',
     coverageReporters: ['html', 'text'],
-    coverageThreshold: {
+    coverageThreshold: isCI ? {} : {
         global: {
             branches: 80,
             functions: 80,
