@@ -6,4 +6,17 @@
     border-radius: 10px;
     padding:10px;
     overflow: scroll;
+    position:relative;
+}
+
+.customer-select{
+    position:absolute;
+    right:10px;
+    padding:5px 10px;
+    border-radius: 10px;
+    border: 0.75px solid rgb(118, 118, 118);
+}
+
+.customer-select:focus{
+    outline:none;
 }
