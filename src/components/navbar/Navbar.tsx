@@ -1,7 +1,7 @@
-import React from 'react'
-import './navbar.css'
+import React from 'react';
+import './navbar.css';
 import Search from "../control/search/Search";
-import LogoImage from '../../images/comp-logo.png'
+import LogoImage from '../../images/comp-logo.png';
 
 const Navbar:React.FC = () => {
     return(

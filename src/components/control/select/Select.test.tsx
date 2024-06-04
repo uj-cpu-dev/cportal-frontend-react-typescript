@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '../../../util/testHelper/test-helper'
+import { render } from '../../../util/testHelper/test-helper';
 import Select from "./Select";
 
 test('<Select />', () => {
