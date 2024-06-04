@@ -1,10 +1,10 @@
 import React from 'react';
-import './search.css'
+import './search.css';
 
 const Search:React.FC = () => {
     return(
         <div className={'search-container'}>
-            <input placeholder={'Search...'} />
+            <input placeholder={'Search...'} data-testid={'search-input'} />
         </div>
     )
 }

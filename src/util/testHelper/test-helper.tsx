@@ -1,0 +1,22 @@
+import React, { ReactElement, FC } from 'react';
+import { render, RenderOptions, screen } from '@testing-library/react';
+import { BrowserRouter } from "react-router-dom";
+import AppContext from "../../context/app-context";
+
+interface ProvidersProps {
+    children: React.ReactNode;
+};
+
+const GlobalProviders:FC<ProvidersProps> = ({ children }) => {
+    return(
+        <BrowserRouter>
+            <AppContext>
+                {children}
+            </AppContext>
+        </BrowserRouter>
+    );
+};
+
+const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) => render(ui, { wrapper: GlobalProviders, ...options });
+
+export { customRender as render, screen };
