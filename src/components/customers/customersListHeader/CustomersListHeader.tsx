@@ -28,14 +28,6 @@ const CustomersListHeader:FC = () => {
                 <Tab title={''}/>
             </th>
         </tr>
-        /* <div className={'customers-list-header-container'}>
-             <Checkbox />
-             <Tab title={'Name'} />
-             <Tab title={'Quota'} />
-             <Tab title={'Phone Number'} />
-             <Tab title={'Created at'} />
-             <Tab title={'Status'} />
-         </div>*/
     )
 }
 
