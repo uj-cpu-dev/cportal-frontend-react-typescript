@@ -1,0 +1,24 @@
+.customer-quota-container{
+    height:20px;
+    display:flex;
+    align-self: center;
+    border-radius: 10px;
+    text-align: center;
+    border: 0.75px solid rgb(118, 118, 118);
+    position:relative;
+    justify-content: center;
+}
+
+.customer-quota-container span{
+    background: #2681FF;
+    width: 0%;
+    height:20px;
+    border-radius: 10px;
+    position: absolute;
+    left:0px;
+}
+
+.customer-quota-container p{
+    position: absolute;
+
+}

@@ -19,3 +19,27 @@ body{
   width:85%;
   margin:auto;
 }
+
+
+input[type="checkbox"] {
+  width:100%;
+  height:auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.col-1 { width: 10%; }
+.col-2 { width: 20%; }
+.col-3 { width: 20%; }
+.col-4 { width: 15%; }
+.col-5 { width: 15%; }
+.col-6 { width: 10%; }
+.col-7 { width: 10%; }
