@@ -8,13 +8,7 @@ interface ProvidersProps {
 };
 
 const GlobalProviders:FC<ProvidersProps> = ({ children }) => {
-    return(
-        <BrowserRouter>
-            <AppContext>
-                {children}
-            </AppContext>
-        </BrowserRouter>
-    );
+    return <AppContext> {children} </AppContext>
 };
 
 const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) => render(ui, { wrapper: GlobalProviders, ...options });

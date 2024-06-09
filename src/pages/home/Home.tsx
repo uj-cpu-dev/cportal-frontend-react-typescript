@@ -5,7 +5,7 @@ import Header from "../../components/header/Header";
 export const Home:React.FC = () => {
     return (
         <div className={'home-container'}>
-            <Header />
+            <Header title={'Customers'} showButton />
             <Customers />
         </div>
     )
