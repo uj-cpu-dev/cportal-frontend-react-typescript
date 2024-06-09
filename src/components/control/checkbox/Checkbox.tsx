@@ -1,8 +1,12 @@
 import React, { FC } from 'react';
+import { CheckboxType } from "./checkbox-type";
 
-const Checkbox:FC = () => {
+const Checkbox:FC<CheckboxType> = ({label, onChange}) => {
     return(
-        <input type="checkbox" />
+        <>
+            <input id={label} type="checkbox" onChange={onChange}/>
+            <label htmlFor={label}>{label}</label>
+        </>
     )
 }
 

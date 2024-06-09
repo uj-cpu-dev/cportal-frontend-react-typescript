@@ -12,7 +12,7 @@ const Customer:FC<Customers> = ( {name, email, quota, phone, createdAt } ) => {
     return (
         <tr>
             <td>
-                <Checkbox/>
+                <Checkbox label={''} onChange={() => console.log('testing')}/>
             </td>
             <td>
                 <CustomerProfile name={name} email={email}/>

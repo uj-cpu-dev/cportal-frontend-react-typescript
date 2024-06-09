@@ -3,7 +3,7 @@ import Button from "../control/button/Button";
 import './header.css';
 import { HeaderType } from "./header-type";
 
-const Header:FC<HeaderType> = ({showButton, title}) => {
+const Header:FC<HeaderType> = ({ showButton, title}) => {
     return(
         <div className={'header-container'}>
             <h2> {title} </h2>
