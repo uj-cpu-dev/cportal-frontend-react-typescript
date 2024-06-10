@@ -1,9 +1,9 @@
 import React from 'react';
 import { ButtonType } from "./button-type";
 
-const Button:React.FC<ButtonType> = ( { title, additionalClassName } ) => {
+const Button:React.FC<ButtonType> = ( { title, additionalClassName, onClick } ) => {
     return(
-        <button className={additionalClassName}>
+        <button className={additionalClassName} onClick={onClick}>
             {title}
         </button>
     )

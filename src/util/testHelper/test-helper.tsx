@@ -1,6 +1,5 @@
 import React, { ReactElement, FC } from 'react';
 import { render, RenderOptions, screen } from '@testing-library/react';
-import { BrowserRouter } from "react-router-dom";
 import AppContext from "../../context/app-context";
 
 interface ProvidersProps {

@@ -1,11 +1,13 @@
 import React from 'react';
 import Customers from "../../components/customers/Customers";
-import Header from "../../components/header/Header";
+import Button from "../../components/control/button/Button";
+import './home.css';
 
 export const Home:React.FC = () => {
+
     return (
         <div className={'home-container'}>
-            <Header title={'Customers'} showButton />
+            <Button title={'Add'} additionalClassName={'header-container-btn'} onClick={() => console.log('testing')} />
             <Customers />
         </div>
     )

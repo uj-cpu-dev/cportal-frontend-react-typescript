@@ -3,5 +3,6 @@ type OnChangeFunction = (e:any) => void;
 
 export interface CheckboxType{
     label:string,
-    onChange: OnChangeFunction
+    onChange: OnChangeFunction,
+    isChecked: boolean
 }

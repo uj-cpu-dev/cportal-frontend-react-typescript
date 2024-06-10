@@ -7,7 +7,7 @@ const CustomersListHeader:FC = () => {
     return (
         <tr>
             <th className={'col-1'}>
-                <Checkbox label={''} onChange={() => console.log('check')}/>
+                <Checkbox label={''} onChange={() => console.log('check')} isChecked={false}/>
             </th>
             <th className={'col-2'}>
                 <Tab title={'Name'}/>

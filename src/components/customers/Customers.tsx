@@ -6,10 +6,13 @@ import CustomersList from "./customersList/CustomersList";
 const Customers:React.FC = () => {
     return(
         <div className={'customers-container'}>
-            <Select
-                options={["Newest", "Oldest"]}
-                additionalClassName={'customer-select'}
-            />
+            <div className={'customers-top-container'}>
+                <h3>Customers</h3>
+                <Select
+                    options={["Newest", "Oldest"]}
+                    additionalClassName={'customer-select'}
+                />
+            </div>
             <CustomersList />
         </div>
     )
