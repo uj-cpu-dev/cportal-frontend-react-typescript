@@ -13,3 +13,43 @@
     border-radius: 10px;
     cursor: pointer;
 }
+
+.back-button{
+    padding: 5px 10px;
+    cursor: pointer;
+    border:none;
+    background: none;
+    line-height:1.2;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.buttons-drop-down-container{
+    display:flex;
+    flex-direction: column;
+    position:absolute;
+    right:0px;
+    top:40px;
+    z-index: 2;
+    width: 100px;
+    background: #eee;
+    transition: 0.4s;
+}
+
+.header-button-side-container{
+    display:flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.header-button-side-container button{
+    margin:5px 0px;
+    border:none;
+}
+
+.edit-button,
+.delete-button{
+    background:none;
+    padding:5px;
+    cursor: pointer;
+}

@@ -1,5 +1,6 @@
 
 export interface ButtonType {
     title:String,
-    additionalClassName: string
+    additionalClassName: string,
+    onClick: () => void
 }
