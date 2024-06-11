@@ -6,16 +6,18 @@ import Button from "../../control/button/Button";
 import Checkbox from "../../control/checkbox/Checkbox";
 import Header from "../../header/Header";
 import { urlHeader } from "../../../util/urlHeader";
+import {useParams} from "react-router-dom";
 
 const CreateCustomer:FC = () => {
     const [shouldShowShippingForm, setShouldShowShippingForm] = useState(true);
+    const {id} = useParams();
 
     return(
         <>
             <Header showButton={urlHeader()} btnText={urlHeader() ? 'Actions': ''}/>
             <div className={'customers-container'}>
                 <h3>Account Information</h3>
-                <CustomerAvatar/>
+                <CustomerAvatar isOnView={id} name={'John Doe'} email={'jdoe@gmail.com'}/>
                 <FormControl
                     data={["Name*", "Email Address*", "Phone Number*", "Company"]}
                     additionalClassName={'form-control-container'}/>
