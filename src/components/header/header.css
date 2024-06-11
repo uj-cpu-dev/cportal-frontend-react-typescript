@@ -14,6 +14,16 @@
     cursor: pointer;
 }
 
+.back-button{
+    padding: 5px 10px;
+    cursor: pointer;
+    border:none;
+    background: none;
+    line-height:1.2;
+    font-weight: 600;
+    font-size: 16px;
+}
+
 .buttons-drop-down-container{
     display:flex;
     flex-direction: column;
@@ -41,4 +51,5 @@
 .delete-button{
     background:none;
     padding:5px;
+    cursor: pointer;
 }

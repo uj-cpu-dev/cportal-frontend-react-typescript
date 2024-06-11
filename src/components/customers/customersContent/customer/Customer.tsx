@@ -6,8 +6,10 @@ import CustomerQuota from "./customerQuota/CustomerQuota";
 import './customer.css'
 import Tab from "../../../control/tab/Tab";
 import {formatDateString, formatPhoneNumber} from "../../../../util/formatter/formatter-helper";
+import {Link} from "react-router-dom";
+import EditIcon from '../../../../images/edit.png';
 
-const Customer:FC<Customers> = ( {name, email, quota, phone, createdAt } ) => {
+const Customer:FC<Customers> = ( {id, name, email, quota, phone, createdAt } ) => {
 
     return (
         <tr>
@@ -30,7 +32,9 @@ const Customer:FC<Customers> = ( {name, email, quota, phone, createdAt } ) => {
                 <Tab title={'Status'}/>
             </td>
             <td>
-                <Tab title={'Edit Icon'}/>
+                <Link to={`customers/${id}`} className={'edit-button'}>
+                    <img src={EditIcon} alt={'edit-icon-logo'} className={'edit-icon-logo'} />
+                </Link>
             </td>
         </tr>
     )
