@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from "./App";
+import './App.css';
 import reportWebVitals from './reportWebVitals';
 import AppContext from "./context/app-context";
+import { RouterProvider } from "react-router-dom";
+import {router} from "./router/router";
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,7 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
       <AppContext>
-          <App />
+          <RouterProvider router={router} />
       </AppContext>
   </React.StrictMode>
 );
