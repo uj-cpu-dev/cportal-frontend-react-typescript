@@ -40,3 +40,12 @@
 .file-input-label:hover {
     background-color: #0056b3;
 }
+
+.customer-details-top-content{
+    display:flex;
+    align-items: center;
+}
+
+.status-container{
+    padding:0px 5px;
+}

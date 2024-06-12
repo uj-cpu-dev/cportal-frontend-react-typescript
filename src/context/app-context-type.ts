@@ -24,7 +24,7 @@ export interface Customers {
     email: string,
     quota: number,
     createdAt: string,
-    status: boolean
+    status: string
 }
 
 export const customersData:Customers[] = [{
@@ -34,7 +34,7 @@ export const customersData:Customers[] = [{
     email: 'jdoe@gmail.com',
     quota: 50,
     createdAt: '10/04/2021',
-    status: true
+    status: 'Active'
 },
     {
         id: 2,
@@ -43,6 +43,15 @@ export const customersData:Customers[] = [{
         email: 'jdoe@gmail.com',
         quota: 50,
         createdAt: '10/04/2021',
-        status: true
+        status: 'Blocked'
+    },
+    {
+        id: 3,
+        name: 'Jennie Doe',
+        phone: '5147897780',
+        email: 'jdoe@gmail.com',
+        quota: 50,
+        createdAt: '10/04/2021',
+        status: 'Pending'
     }
 ]

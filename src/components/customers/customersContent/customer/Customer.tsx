@@ -8,8 +8,9 @@ import Tab from "../../../control/tab/Tab";
 import {formatDateString, formatPhoneNumber} from "../../../../util/formatter/formatter-helper";
 import {Link} from "react-router-dom";
 import EditIcon from '../../../../images/edit.png';
+import Status from "../../../control/status/Status";
 
-const Customer:FC<Customers> = ( {id, name, email, quota, phone, createdAt } ) => {
+const Customer:FC<Customers> = ( {id, name, email, quota, phone, createdAt, status } ) => {
 
     return (
         <tr>
@@ -29,7 +30,7 @@ const Customer:FC<Customers> = ( {id, name, email, quota, phone, createdAt } ) =
                 <Tab title={formatDateString(createdAt)}/>
             </td>
             <td>
-                <Tab title={'Status'}/>
+                <Status status={status} />
             </td>
             <td>
                 <Link to={`customers/${id}`} className={'edit-button'}>
