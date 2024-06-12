@@ -1,0 +1,16 @@
+.customer-basics-container{
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+}
+
+.customer-basics-content{
+    width:30%;
+    display:flex;
+    flex-direction: column;
+}
+
+.customer-billing-container{
+    width:67%;
+    margin:20px 0px;
+}

@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import Button from "../control/button/Button";
 import './header.css';
 import { HeaderType } from "./header-type";
-import {useNavigate} from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Header:FC<HeaderType> = ({ showButton, btnText}) => {
     const [showDropdown, setShowDropdown] = useState(false);
@@ -15,7 +15,9 @@ const Header:FC<HeaderType> = ({ showButton, btnText}) => {
             <div className={'header-button-side-container'}>
                 {showButton && <Button onClick={() => setShowDropdown(!showDropdown)} title={btnText} additionalClassName={'header-container-btn'} />}
                 {(showButton && showDropdown) && <div className={'buttons-drop-down-container'}>
-                    <button className={'edit-button'}> Edit</button>
+                    <Link to={'/customers/create'}>
+                        <button className={'edit-button'}> Edit</button>
+                    </Link>
                     <button className={'delete-button'}> Delete</button>
                 </div>}
             </div>
