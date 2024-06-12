@@ -1,0 +1,32 @@
+.delete-account-container{
+    border: 0.75px solid rgb(118, 118, 118);
+    margin:20px 0px;
+    width:100%;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 5px 22px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    padding:20px;
+}
+
+.delete-account-btn{
+    background: #de3024;
+    padding:10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    border:none;
+    margin:10px 0px;
+}
+
+.delete-text{
+    color: rgb(118, 118, 118);
+}
+
+.delete-account-top-container{
+    display:flex;
+    align-items: center;
+}
+
+.delete-account-top-container img{
+    max-width:20px;
+    max-height:20px;
+    margin-right:7px;
+}

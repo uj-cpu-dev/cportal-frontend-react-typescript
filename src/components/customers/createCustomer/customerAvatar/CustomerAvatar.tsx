@@ -3,6 +3,7 @@ import './customeravatar.css'
 import CameraImage from '../../../../images/camera.png'
 import FileInput from "../../../control/fileInput/FileInput";
 import {CustomerAvatarType} from "./customeravatar-type";
+import Status from "../../../control/status/Status";
 
 const CustomerAvatar:FC<CustomerAvatarType> = ( { isOnView, name, email } ) => {
 
@@ -21,13 +22,14 @@ const CustomerAvatar:FC<CustomerAvatarType> = ( { isOnView, name, email } ) => {
             <>
                 <h3>{name}</h3>
                 <p> {email}</p>
+                <Status status={'Active'}/>
             </>
         )
     }
 
     return (
         <div className={'customer-avatar-container'}>
-        <div className={'customer-avatar'}>
+            <div className={'customer-avatar'}>
                 <img src={CameraImage} alt={'camera-logo'}/>
             </div>
             <div className={'customer-avatar-content'}>

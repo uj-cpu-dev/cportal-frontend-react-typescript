@@ -1,0 +1,29 @@
+.basic-details-container{
+    border: 0.75px solid rgb(118, 118, 118);
+    margin:20px 0px;
+    width:100%;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 5px 22px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.details-tab{
+    border-top: 0.75px solid rgb(118, 118, 118);
+    padding:10px;
+}
+
+.basic-details-top-bar{
+    padding:20px 10px;
+    display:flex;
+    align-items: center;
+}
+
+.basic-details-top-bar img{
+    max-width:20px;
+    height:20px;
+    margin-right:7px;
+}
+
+.details-tab p:nth-child(1){
+    color:rgb(118, 118, 118);
+    margin-bottom:7px;
+}
