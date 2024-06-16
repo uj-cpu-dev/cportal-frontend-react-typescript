@@ -4,7 +4,7 @@ import './header.css';
 import { HeaderType } from "./header-type";
 import { useNavigate, Link } from "react-router-dom";
 
-const Header:FC<HeaderType> = ({ showButton, btnText}) => {
+const Header:FC<HeaderType> = ({ showButton, btnText, onEditClick}) => {
     const [showDropdown, setShowDropdown] = useState(false);
     const navigate = useNavigate();
     const handleBackClick = () => navigate(-1);
@@ -16,7 +16,7 @@ const Header:FC<HeaderType> = ({ showButton, btnText}) => {
                 {showButton && <Button onClick={() => setShowDropdown(!showDropdown)} title={btnText} additionalClassName={'header-container-btn'} />}
                 {(showButton && showDropdown) && <div className={'buttons-drop-down-container'}>
                     <Link to={'/customers/create'}>
-                        <button className={'edit-button'}> Edit</button>
+                        <button className={'edit-button'} onClick={onEditClick}> Edit</button>
                     </Link>
                     <button className={'delete-button'}> Delete</button>
                 </div>}

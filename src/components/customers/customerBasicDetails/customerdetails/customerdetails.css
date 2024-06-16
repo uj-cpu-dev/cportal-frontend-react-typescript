@@ -30,5 +30,5 @@
 }
 
 .billing-details-content .details-tab p:nth-child(1){
-    margin-right:20px;
+    width:100px;
 }

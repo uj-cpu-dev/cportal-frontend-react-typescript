@@ -1,4 +1,5 @@
 export interface HeaderType{
     showButton: boolean,
-    btnText:string
+    btnText:string,
+    onEditClick: () => void
 }

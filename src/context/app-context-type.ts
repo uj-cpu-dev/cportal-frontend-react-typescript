@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, {Dispatch, SetStateAction, ChangeEvent} from "react";
 
 export interface ContextProps {
     children: React.ReactNode;
@@ -6,10 +6,14 @@ export interface ContextProps {
 
 interface GlobalState {
     customers: Customers[];
+    eachCustomer: Customers;
 }
 
 interface GlobalActions {
     setCustomers: Dispatch<SetStateAction<any[]>>
+    setEachCustomer: Dispatch<SetStateAction<any[]>>
+    handleInputChange: (formParameter: string) => (event: ChangeEvent<HTMLInputElement>) => void;
+    resetForm: () => void
 }
 
 export interface GlobalContextValue {
@@ -27,31 +31,9 @@ export interface Customers {
     status: string
 }
 
-export const customersData:Customers[] = [{
-    id: 1,
-    name: 'John Doe',
-    phone: '5147897780',
-    email: 'jdoe@gmail.com',
-    quota: 50,
-    createdAt: '10/04/2021',
-    status: 'Active'
-},
-    {
-        id: 2,
-        name: 'Jane Doe',
-        phone: '5147897780',
-        email: 'jdoe@gmail.com',
-        quota: 50,
-        createdAt: '10/04/2021',
-        status: 'Blocked'
-    },
-    {
-        id: 3,
-        name: 'Jennie Doe',
-        phone: '5147897780',
-        email: 'jdoe@gmail.com',
-        quota: 50,
-        createdAt: '10/04/2021',
-        status: 'Pending'
+export const initialFormState = {
+    address: {
+        billing_address: {},
+        shipping_address: {}
     }
-]
+}
