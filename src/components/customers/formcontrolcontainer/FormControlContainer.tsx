@@ -2,9 +2,45 @@ import React, { useState, FC} from 'react';
 import FormControl from "../../control/formControl/FormControl";
 import Checkbox from "../../control/checkbox/Checkbox";
 import Button from "../../control/button/Button";
+import { useNavigate } from "react-router-dom";
+import useApi from "../../../hooks/useApi";
 
-const FormControlContainer:FC<{data: any, handleInputChange:any}> = ( { data, handleInputChange } ) => {
+const FormControlContainer:FC<{data: any, handleInputChange:any, dispatch:any}> = ( { data, handleInputChange, dispatch } ) => {
     const [shouldShowShippingForm, setShouldShowShippingForm] = useState(true);
+    const navigate = useNavigate();
+    const { sendRequest } = useApi();
+
+    const renderButtonText = () => {
+        const url =  window.location.pathname;
+        let btnText = '';
+        if(url.includes('create')){
+            btnText = 'Create Customer'
+        }
+
+        if(url.includes('edit')){
+            btnText = 'Update Customer'
+        }
+
+        return btnText;
+    }
+
+    const createCustomer = () =>  dispatch({type: "CREATE_CUSTOMER", payload: data})
+
+    const formUtil = () => {
+        if(renderButtonText() === 'Create Customer'){
+            sendRequest('http://localhost:4000/customers', 'POST', data)
+                .then(r => createCustomer())
+                .catch(e => console.log(e))
+        }
+
+        if(renderButtonText() === 'Update Customer'){
+            dispatch({type: "UPDATE_CUSTOMER", payload: data})
+        }
+
+        navigate('/')
+        return null;
+    }
+
 
     return(
         <>
@@ -41,7 +77,7 @@ const FormControlContainer:FC<{data: any, handleInputChange:any}> = ( { data, ha
                 additionalClassName={'form-control-container'}/>
             <div className={'form-footer-buttons-container'}>
                 <Button title={'Cancel'} additionalClassName={''} onClick={() => console.log('testing')} />
-                <Button title={'Create Customer'} additionalClassName={''} onClick={() => console.log('testing')} />
+                <Button title={renderButtonText()} additionalClassName={''} onClick={() => formUtil()} />
             </div>
         </>
     )

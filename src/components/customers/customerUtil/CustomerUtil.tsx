@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import './createcustomer.css'
+import './customerutil.css';
 import CustomerAvatar from "./customerAvatar/CustomerAvatar";
 import Header from "../../header/Header";
 import { urlHeader } from "../../../util/urlHeader";
@@ -7,15 +7,15 @@ import {useParams} from "react-router-dom";
 import CustomerBasicDetails from "../customerBasicDetails/CustomerBasicDetails";
 import FormControlContainer from "../formcontrolcontainer/FormControlContainer";
 import useFetch from "../../../hooks/useFetch";
-import {useGlobalContext} from "../../../context/app-context";
+import { useGlobalContext } from "../../../context/app-context";
 
-const CreateCustomer:FC = () => {
+const CustomerUtil:FC = () => {
     const {id} = useParams();
     const shouldFetchData = id && `http://localhost:4000/customers/${id}`;
     const [data] = useFetch(shouldFetchData, 'data');
     const {state, actions} = useGlobalContext();
     const { eachCustomer} = state;
-    const { setEachCustomer, handleInputChange} = actions;
+    const { setEachCustomer, handleInputChange, dispatch} = actions;
 
     const updateEachCustomer = () => data && setEachCustomer(data?.customer);
 
@@ -25,10 +25,20 @@ const CreateCustomer:FC = () => {
             <div className={'customers-container'}>
                 <h3>Account Information</h3>
                 <CustomerAvatar isOnView={id} name={data?.customer?.name || ''} email={data?.customer?.email || ''}/>
-                {id ? <CustomerBasicDetails data={data?.customer} /> : <FormControlContainer data={eachCustomer} handleInputChange={handleInputChange} />}
+                {   id ?
+                    <CustomerBasicDetails
+                        data={data?.customer}
+                    />
+                    :
+                    <FormControlContainer
+                        data={eachCustomer}
+                        handleInputChange={handleInputChange}
+                        dispatch={dispatch}
+                    />
+                }
             </div>
         </>
     )
 }
 
-export default CreateCustomer;
+export default CustomerUtil;

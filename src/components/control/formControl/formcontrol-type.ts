@@ -1,4 +1,4 @@
-import {ChangeEvent, ChangeEventHandler, SyntheticEvent} from "react";
+import {ChangeEvent} from "react";
 
 export interface FormControlType{
     data: string[],

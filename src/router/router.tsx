@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "./Root";
 import ErrorPage from "./ErrorPage";
 import { Home } from "../pages/home/Home";
-import CreateCustomer from "../components/customers/createCustomer/CreateCustomer";
+import CustomerUtil from "../components/customers/customerUtil/CustomerUtil";
 
 export const router = createBrowserRouter([
     {
@@ -17,11 +17,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: "customers/create",
-                element: <CreateCustomer />,
+                element: <CustomerUtil />,
+            },
+            {
+                path: "customers/edit",
+                element: <CustomerUtil />,
             },
             {
                 path: "customers/:id",
-                element: <CreateCustomer />,
+                element: <CustomerUtil />,
             },
         ],
     },

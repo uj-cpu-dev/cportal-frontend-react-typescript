@@ -3,23 +3,17 @@ import React, {
     FC,
     useState,
     useContext,
-    useEffect,
     ChangeEvent,
 } from 'react';
 import { ContextProps, GlobalContextValue, Customers, initialFormState} from "./app-context-type";
-import useFetch from "../hooks/useFetch";
+import useCustomers from "../hooks/useCustomers";
 
 
 const GlobalContext = createContext<GlobalContextValue | null>(null);
 
 const AppContext:FC<ContextProps> = ({children}) => {
-    const [data, isLoading, isError] = useFetch('http://localhost:4000/customers', 'customers');
-    const [customers, setCustomers] = useState<Customers[] | any>([]);
     const [eachCustomer, setEachCustomer] = useState<Customers | any>(initialFormState);
-
-    useEffect(() => {
-       if(data) setCustomers(data);
-    }, [data])
+    const { customers, dispatch } = useCustomers();
 
     const handleInputChange = (formParameter: string) => (event: ChangeEvent<HTMLInputElement>): void => {
         const target = event.target;
@@ -50,10 +44,10 @@ const AppContext:FC<ContextProps> = ({children}) => {
                 eachCustomer
             },
             actions: {
-                setCustomers,
                 setEachCustomer,
                 handleInputChange,
-                resetForm
+                resetForm,
+                dispatch
             }
         }}>
             {children}

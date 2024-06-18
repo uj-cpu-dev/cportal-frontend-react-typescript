@@ -17,6 +17,9 @@ export const formatForm = (formValue:string) => {
         case "Country*":
             value = 'country'
             break;
+        case "City*":
+            value = 'city'
+            break;
         case "State*":
             value = 'state'
             break;

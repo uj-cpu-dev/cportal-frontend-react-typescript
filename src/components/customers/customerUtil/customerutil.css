@@ -30,6 +30,7 @@
     border:none;
     margin-right:7px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .form-footer-buttons-container button:nth-child(2){

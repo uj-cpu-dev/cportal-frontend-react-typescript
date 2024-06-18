@@ -10,10 +10,10 @@ interface GlobalState {
 }
 
 interface GlobalActions {
-    setCustomers: Dispatch<SetStateAction<any[]>>
     setEachCustomer: Dispatch<SetStateAction<any[]>>
     handleInputChange: (formParameter: string) => (event: ChangeEvent<HTMLInputElement>) => void;
-    resetForm: () => void
+    resetForm: () => void;
+    dispatch: any
 }
 
 export interface GlobalContextValue {
@@ -27,7 +27,7 @@ export interface Customers {
     phone: string,
     email: string,
     quota: number,
-    createdAt: string,
+    createdAt: Date,
     status: string
 }
 
@@ -35,5 +35,7 @@ export const initialFormState = {
     address: {
         billing_address: {},
         shipping_address: {}
-    }
+    },
+    createdAt: new Date(),
+    quota: 50
 }

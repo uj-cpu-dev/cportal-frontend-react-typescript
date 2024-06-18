@@ -1,5 +1,3 @@
-import { format, parseISO } from 'date-fns';
-
 export const formatPhoneNumber = (phoneNumber:string) => {
     if(phoneNumber?.length === 10){
         const phoneStr = phoneNumber.toString();
@@ -7,13 +5,18 @@ export const formatPhoneNumber = (phoneNumber:string) => {
     }
     return '(000) 000 - 0000'
 }
-export const formatDateString = (dateString: string): string => {
-    const date = parseISO(dateString);
+export const formatDateString = ():string => {
+    const dateString = new Date();
+    const options: Intl.DateTimeFormatOptions = {
+        weekday: 'short',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+    };
 
-    const monthDayYear = format(date, 'MMMM do, yyyy');
-    const hourMinute = format(date, 'HH:mma').toLowerCase();
-
-    return `${monthDayYear} ${hourMinute}`;
+    return new Intl.DateTimeFormat('en-US', options).format(dateString || new Date());
 }
 
 
