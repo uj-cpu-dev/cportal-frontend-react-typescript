@@ -5,7 +5,7 @@ import React, {
     useContext,
     ChangeEvent,
 } from 'react';
-import { ContextProps, GlobalContextValue, Customers, initialFormState} from "./app-context-type";
+import { ContextProps, GlobalContextValue, Customers, initialFormState, initialDeleteModalState} from "./app-context-type";
 import useCustomers from "../hooks/useCustomers";
 
 
@@ -14,6 +14,7 @@ const GlobalContext = createContext<GlobalContextValue | null>(null);
 const AppContext:FC<ContextProps> = ({children}) => {
     const [eachCustomer, setEachCustomer] = useState<Customers | any>(initialFormState);
     const { customers, dispatch } = useCustomers();
+    const [deleteModal, setDeleteModal] = useState(initialDeleteModalState);
 
     const handleInputChange = (formParameter: string) => (event: ChangeEvent<HTMLInputElement>): void => {
         const target = event.target;
@@ -37,17 +38,23 @@ const AppContext:FC<ContextProps> = ({children}) => {
 
     const resetForm = () => setEachCustomer(initialFormState);
 
+    const openDeleteModal = () => setDeleteModal((prev:any) => ({...prev, isOpen: true}));
+    const closeDeleteModal = () => setDeleteModal(initialDeleteModalState);
+
     return(
         <GlobalContext.Provider value={{
             state: {
                 customers,
-                eachCustomer
+                eachCustomer,
+                deleteModal,
             },
             actions: {
                 setEachCustomer,
                 handleInputChange,
                 resetForm,
-                dispatch
+                dispatch,
+                openDeleteModal,
+                closeDeleteModal
             }
         }}>
             {children}

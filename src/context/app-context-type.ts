@@ -7,13 +7,16 @@ export interface ContextProps {
 interface GlobalState {
     customers: Customers[];
     eachCustomer: Customers;
+    deleteModal: any
 }
 
 interface GlobalActions {
     setEachCustomer: Dispatch<SetStateAction<any[]>>
     handleInputChange: (formParameter: string) => (event: ChangeEvent<HTMLInputElement>) => void;
     resetForm: () => void;
-    dispatch: any
+    dispatch: any,
+    openDeleteModal: () => void,
+    closeDeleteModal: () => void
 }
 
 export interface GlobalContextValue {
@@ -31,11 +34,19 @@ export interface Customers {
     status: string
 }
 
+const generateRandomQuotaNumber = (min = 50.00, max = 100.00) => {
+    return (Math.random() * (max - min) + min).toFixed(2);
+}
+
 export const initialFormState = {
     address: {
         billing_address: {},
         shipping_address: {}
     },
     createdAt: new Date(),
-    quota: 50
+    quota: parseInt(generateRandomQuotaNumber())
+}
+
+export const initialDeleteModalState = {
+    isOpen:false,
 }

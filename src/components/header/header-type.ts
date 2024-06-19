@@ -1,5 +1,6 @@
 export interface HeaderType{
     showButton: boolean,
     btnText:string,
-    onEditClick: () => void
+    onEditClick: () => void,
+    openDeleteModal: () => void
 }

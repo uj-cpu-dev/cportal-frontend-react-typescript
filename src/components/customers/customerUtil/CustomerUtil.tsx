@@ -8,6 +8,7 @@ import CustomerBasicDetails from "../customerBasicDetails/CustomerBasicDetails";
 import FormControlContainer from "../formcontrolcontainer/FormControlContainer";
 import useFetch from "../../../hooks/useFetch";
 import { useGlobalContext } from "../../../context/app-context";
+import DeleteCustomer from "../deleteCustomer/DeleteCustomer";
 
 const CustomerUtil:FC = () => {
     const {id} = useParams();
@@ -15,13 +16,18 @@ const CustomerUtil:FC = () => {
     const [data] = useFetch(shouldFetchData, 'data');
     const {state, actions} = useGlobalContext();
     const { eachCustomer} = state;
-    const { setEachCustomer, handleInputChange, dispatch} = actions;
+    const { setEachCustomer, handleInputChange, dispatch, openDeleteModal} = actions;
 
     const updateEachCustomer = () => data && setEachCustomer(data?.customer);
 
     return(
         <>
-            <Header showButton={urlHeader()} btnText={urlHeader() ? 'Actions': ''} onEditClick={updateEachCustomer}/>
+            <Header
+                showButton={urlHeader()}
+                btnText={urlHeader() ? 'Actions': ''}
+                onEditClick={updateEachCustomer}
+                openDeleteModal={openDeleteModal}
+            />
             <div className={'customers-container'}>
                 <h3>Account Information</h3>
                 <CustomerAvatar isOnView={id} name={data?.customer?.name || ''} email={data?.customer?.email || ''}/>
@@ -37,6 +43,7 @@ const CustomerUtil:FC = () => {
                     />
                 }
             </div>
+            <DeleteCustomer />
         </>
     )
 }

@@ -4,10 +4,20 @@ import './header.css';
 import { HeaderType } from "./header-type";
 import { useNavigate, Link } from "react-router-dom";
 
-const Header:FC<HeaderType> = ({ showButton, btnText, onEditClick}) => {
+const Header:FC<HeaderType> = ({ showButton, btnText, onEditClick, openDeleteModal}) => {
     const [showDropdown, setShowDropdown] = useState(false);
     const navigate = useNavigate();
     const handleBackClick = () => navigate(-1);
+
+    const routeToEditPage = () => {
+        setShowDropdown(false);
+        onEditClick();
+    }
+
+    const shouldOpenDeleteModal = () => {
+        setShowDropdown(false);
+        openDeleteModal();
+    }
 
     return(
         <div className={'header-container'}>
@@ -16,9 +26,9 @@ const Header:FC<HeaderType> = ({ showButton, btnText, onEditClick}) => {
                 {showButton && <Button onClick={() => setShowDropdown(!showDropdown)} title={btnText} additionalClassName={'header-container-btn'} />}
                 {(showButton && showDropdown) && <div className={'buttons-drop-down-container'}>
                     <Link to={'/customers/edit'}>
-                        <button className={'edit-button'} onClick={onEditClick}> Edit</button>
+                        <button className={'edit-button'} onClick={() => routeToEditPage()}> Edit</button>
                     </Link>
-                    <button className={'delete-button'}> Delete</button>
+                    <button className={'delete-button'} onClick={() => shouldOpenDeleteModal()}> Delete</button>
                 </div>}
             </div>
         </div>
