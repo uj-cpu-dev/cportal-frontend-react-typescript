@@ -9,14 +9,14 @@ const Header:FC<HeaderType> = ({ showButton, btnText, onEditClick, openDeleteMod
     const navigate = useNavigate();
     const handleBackClick = () => navigate(-1);
 
-    const routeToEditPage = () => {
+    const updateCustomerOnClick = () => {
         setShowDropdown(false);
         onEditClick();
     }
 
     const shouldOpenDeleteModal = () => {
-        setShowDropdown(false);
         openDeleteModal();
+        updateCustomerOnClick();
     }
 
     return(
@@ -26,7 +26,7 @@ const Header:FC<HeaderType> = ({ showButton, btnText, onEditClick, openDeleteMod
                 {showButton && <Button onClick={() => setShowDropdown(!showDropdown)} title={btnText} additionalClassName={'header-container-btn'} />}
                 {(showButton && showDropdown) && <div className={'buttons-drop-down-container'}>
                     <Link to={'/customers/edit'}>
-                        <button className={'edit-button'} onClick={() => routeToEditPage()}> Edit</button>
+                        <button className={'edit-button'} onClick={() => updateCustomerOnClick()}> Edit</button>
                     </Link>
                     <button className={'delete-button'} onClick={() => shouldOpenDeleteModal()}> Delete</button>
                 </div>}

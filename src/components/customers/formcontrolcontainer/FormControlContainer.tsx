@@ -5,13 +5,13 @@ import Button from "../../control/button/Button";
 import useFormControlContainer from "./useFormControlContainer";
 import './formcontrolcontainer.css'
 
-const FormControlContainer:FC<{data: any, handleInputChange:any, dispatch:any}> = ( { data, handleInputChange, dispatch } ) => {
+const FormControlContainer:FC<{data: any, handleInputChange:any}> = ( { data, handleInputChange } ) => {
     const {
         shouldShowShippingForm,
         setShouldShowShippingForm,
         renderButtonText,
         formUtil
-    } = useFormControlContainer(dispatch, data);
+    } = useFormControlContainer();
 
     return(
         <>

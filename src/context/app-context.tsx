@@ -4,6 +4,7 @@ import React, {
     useState,
     useContext,
     ChangeEvent,
+    useEffect
 } from 'react';
 import { ContextProps, GlobalContextValue, Customers, initialFormState, initialDeleteModalState} from "./app-context-type";
 import useCustomers from "../hooks/useCustomers";
@@ -41,6 +42,8 @@ const AppContext:FC<ContextProps> = ({children}) => {
     const openDeleteModal = () => setDeleteModal((prev:any) => ({...prev, isOpen: true}));
     const closeDeleteModal = () => setDeleteModal(initialDeleteModalState);
 
+    const generateId = () => customers[customers?.length - 1]?.id + 1 || 1;
+
     return(
         <GlobalContext.Provider value={{
             state: {
@@ -54,7 +57,8 @@ const AppContext:FC<ContextProps> = ({children}) => {
                 resetForm,
                 dispatch,
                 openDeleteModal,
-                closeDeleteModal
+                closeDeleteModal,
+                generateId
             }
         }}>
             {children}

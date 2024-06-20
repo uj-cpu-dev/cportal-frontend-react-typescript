@@ -34,12 +34,12 @@ const CustomerUtil:FC = () => {
                 {   id ?
                     <CustomerBasicDetails
                         data={data?.customer}
+                        updateEachCustomer={updateEachCustomer}
                     />
                     :
                     <FormControlContainer
                         data={eachCustomer}
                         handleInputChange={handleInputChange}
-                        dispatch={dispatch}
                     />
                 }
             </div>

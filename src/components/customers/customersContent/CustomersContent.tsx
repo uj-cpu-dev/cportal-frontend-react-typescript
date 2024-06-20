@@ -9,7 +9,7 @@ const CustomersContent: FC<CustomersContentType> = ({customers}) => {
             {
                 customers &&
                 customers?.map(customer => {
-                    const {id, name, email, phone, createdAt, quota} = customer;
+                    const {id, name, email, phone, createdAt, quota, company_name, address} = customer;
                     return (
                         <Customer
                             key={id}
@@ -20,6 +20,8 @@ const CustomersContent: FC<CustomersContentType> = ({customers}) => {
                             createdAt={createdAt}
                             quota={quota}
                             status={'Active'}
+                            company_name={company_name}
+                            address={address}
                         />
                     )
                 })

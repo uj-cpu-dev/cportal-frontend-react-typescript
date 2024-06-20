@@ -5,18 +5,27 @@ export const formatPhoneNumber = (phoneNumber:string) => {
     }
     return '(000) 000 - 0000'
 }
-export const formatDateString = ():string => {
-    const dateString = new Date();
-    const options: Intl.DateTimeFormatOptions = {
-        weekday: 'short',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-    };
+export const formatDateString = (dateString:any) => {
+    const date = new Date(dateString);
 
-    return new Intl.DateTimeFormat('en-US', options).format(dateString || new Date());
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    const dayOfWeek = days[date.getUTCDay()];
+    const day = date.getUTCDate();
+    const month = months[date.getUTCMonth()];
+    const year = date.getUTCFullYear();
+
+    let hours = date.getUTCHours();
+    const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+    const period = hours >= 12 ? 'PM' : 'AM';
+
+    hours = hours % 12 || 12;
+
+    return `${dayOfWeek}, ${month} ${day}, ${year} at ${hours}:${minutes} ${period}`;
 }
 
 

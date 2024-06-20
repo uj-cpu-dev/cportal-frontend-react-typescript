@@ -1,11 +1,19 @@
 import { useState } from "react";
 import { useNavigate} from "react-router-dom";
 import useApi from "../../../hooks/useApi";
+import { useGlobalContext } from "../../../context/app-context";
 
-const useFormControlContainer = (dispatch: any, data:any) => {
+const useFormControlContainer = () => {
     const [shouldShowShippingForm, setShouldShowShippingForm] = useState(true);
+    const { state, actions} = useGlobalContext()
+    const { eachCustomer} = state;
+    const { dispatch, generateId} = actions;
     const navigate = useNavigate();
     const { sendRequest } = useApi();
+    const payload = {
+        ...eachCustomer,
+        id: generateId()
+    }
 
     const renderButtonText = () => {
         const url =  window.location.pathname;
@@ -21,15 +29,12 @@ const useFormControlContainer = (dispatch: any, data:any) => {
         return btnText;
     }
 
-    const createCustomer = () =>  dispatch({type: "CREATE_CUSTOMER", payload: data})
+    const createCustomer = () =>  dispatch({type: "CREATE_CUSTOMER", payload: payload})
 
-    const updateCustomer = () => dispatch({type: "UPDATE_CUSTOMER", payload: data})
+    const updateCustomer = () => dispatch({type: "UPDATE_CUSTOMER", payload: payload})
 
     const sendRequestUtil = (url:string, method: string, callBack: () => void) => {
-        sendRequest(url, method, {
-            ...data,
-            id: 2,
-        }).then(r => callBack()).catch(e => console.log(e))
+        sendRequest(url, method, payload).then(r => callBack()).catch(e => console.log(e))
     }
 
     const formUtil = () => {
@@ -38,7 +43,7 @@ const useFormControlContainer = (dispatch: any, data:any) => {
         }
 
         if(renderButtonText() === 'Update Customer'){
-            sendRequestUtil(`http://localhost:4000/customers/${2}`, 'PUT', updateCustomer)
+            sendRequestUtil(`http://localhost:4000/customers/${eachCustomer?.id}`, 'PUT', updateCustomer)
         }
 
         navigate('/')

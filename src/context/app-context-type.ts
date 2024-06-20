@@ -7,7 +7,7 @@ export interface ContextProps {
 interface GlobalState {
     customers: Customers[];
     eachCustomer: Customers;
-    deleteModal: any
+    deleteModal: any,
 }
 
 interface GlobalActions {
@@ -16,7 +16,8 @@ interface GlobalActions {
     resetForm: () => void;
     dispatch: any,
     openDeleteModal: () => void,
-    closeDeleteModal: () => void
+    closeDeleteModal: () => void,
+    generateId: () => number
 }
 
 export interface GlobalContextValue {
@@ -30,8 +31,10 @@ export interface Customers {
     phone: string,
     email: string,
     quota: number,
-    createdAt: Date,
-    status: string
+    createdAt: string | any,
+    status: string,
+    address: any,
+    company_name: string
 }
 
 const generateRandomQuotaNumber = (min = 50.00, max = 100.00) => {

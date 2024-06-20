@@ -27,7 +27,7 @@ const Customer:FC<Customers> = ( {id, name, email, quota, phone, createdAt, stat
                 <Tab title={formatPhoneNumber(phone)}/>
             </td>
             <td>
-                <Tab title={formatDateString()}/>
+                <Tab title={formatDateString(createdAt) || ''}/>
             </td>
             <td>
                 <Status status={status} />

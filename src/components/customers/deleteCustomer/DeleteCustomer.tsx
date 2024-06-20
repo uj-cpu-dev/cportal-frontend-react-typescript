@@ -9,15 +9,15 @@ const DeleteCustomer = () => {
     const {state, actions} = useGlobalContext();
     const { sendRequest } = useApi();
     const navigate = useNavigate();
-    const {deleteModal} = state;
+    const {deleteModal, eachCustomer} = state;
     const {closeDeleteModal, dispatch} = actions;
 
     const removeCustomer = () => {
-        dispatch({type: "DELETE_CUSTOMER", payload: {id: 2}});
+        dispatch({type: "DELETE_CUSTOMER", payload: {id: eachCustomer?.id}});
         navigate('/');
     }
     const deleteCustomer = () => {
-        sendRequest(`http://localhost:4000/customers/${2}`, 'DELETE').then(r => removeCustomer()).catch(e => console.log(e))
+        sendRequest(`http://localhost:4000/customers/${eachCustomer?.id}`, 'DELETE').then(r => removeCustomer()).catch(e => console.log(e))
     }
 
     return(
