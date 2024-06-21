@@ -4,6 +4,7 @@ import Checkbox from "../../control/checkbox/Checkbox";
 import Button from "../../control/button/Button";
 import useFormControlContainer from "./useFormControlContainer";
 import './formcontrolcontainer.css'
+import {formValidator} from "../../../util/formvalidator";
 
 const FormControlContainer:FC<{data: any, handleInputChange:any}> = ( { data, handleInputChange } ) => {
     const {
@@ -47,8 +48,18 @@ const FormControlContainer:FC<{data: any, handleInputChange:any}> = ( { data, ha
                 handleInputChange={handleInputChange}
                 additionalClassName={'form-control-container'}/>
             <div className={'form-footer-buttons-container'}>
-                <Button title={'Cancel'} additionalClassName={''} onClick={() => console.log('testing')} />
-                <Button title={renderButtonText()} additionalClassName={''} onClick={() => formUtil()} />
+                <Button
+                    title={'Cancel'}
+                    additionalClassName={''}
+                    onClick={() => console.log('testing')}
+                    disabled={false}
+                />
+                <Button
+                    title={renderButtonText()}
+                    additionalClassName={`${formValidator(data) ? 'disabled-btn' : ''}`}
+                    onClick={() => formUtil()}
+                    disabled={formValidator(data)}
+                />
             </div>
         </>
     )
