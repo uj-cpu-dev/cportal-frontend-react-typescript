@@ -30,8 +30,8 @@ const DeleteCustomer = () => {
                             <div> Delete Customer</div>
                             <span> Are you sure you want to delete this customer ?</span>
                             <div className={'delete-btn-container'}>
-                                <Button title={'No'} additionalClassName={''} onClick={() => closeDeleteModal()}/>
-                                <Button title={'Yes'} additionalClassName={'yes-btn'} onClick={() => deleteCustomer()}/>
+                                <Button title={'No'} additionalClassName={''} onClick={() => closeDeleteModal()} disabled={false}/>
+                                <Button title={'Yes'} additionalClassName={'yes-btn'} onClick={() => deleteCustomer()} disabled={false}/>
                             </div>
                         </div>
                     </div>

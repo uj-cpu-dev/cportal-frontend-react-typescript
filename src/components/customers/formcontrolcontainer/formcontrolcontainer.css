@@ -46,3 +46,8 @@
     justify-content: flex-start;
     margin:10px 0px;
 }
+
+.disabled-btn{
+    background: #d7d7d7 !important;
+    cursor: not-allowed !important;
+}

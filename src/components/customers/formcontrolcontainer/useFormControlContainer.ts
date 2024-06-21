@@ -4,7 +4,7 @@ import useApi from "../../../hooks/useApi";
 import { useGlobalContext } from "../../../context/app-context";
 
 const useFormControlContainer = () => {
-    const [shouldShowShippingForm, setShouldShowShippingForm] = useState(true);
+    const [shouldShowShippingForm, setShouldShowShippingForm] = useState(false);
     const { state, actions} = useGlobalContext()
     const { eachCustomer} = state;
     const { dispatch, generateId} = actions;

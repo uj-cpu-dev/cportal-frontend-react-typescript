@@ -20,7 +20,12 @@ const DeleteAccount:FC<DeleteAccountType> = ( { updateEachCustomer } ) => {
                 <img src={Security} alt={'security-logo'} />
                 <h3>Security</h3>
             </div>
-            <Button title={'Delete account'} additionalClassName={'delete-account-btn'} onClick={() => openModalAndUpdateCustomer()} />
+            <Button
+                title={'Delete account'}
+                additionalClassName={'delete-account-btn'}
+                onClick={() => openModalAndUpdateCustomer()}
+                disabled={false}
+            />
             <p className={'delete-text'}>A deleted customer cannot be restored. All data will be permanently removed.</p>
         </div>
     )

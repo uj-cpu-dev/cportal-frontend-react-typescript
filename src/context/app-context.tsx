@@ -3,8 +3,7 @@ import React, {
     FC,
     useState,
     useContext,
-    ChangeEvent,
-    useEffect
+    ChangeEvent
 } from 'react';
 import { ContextProps, GlobalContextValue, Customers, initialFormState, initialDeleteModalState} from "./app-context-type";
 import useCustomers from "../hooks/useCustomers";

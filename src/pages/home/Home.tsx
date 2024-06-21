@@ -12,7 +12,12 @@ export const Home:React.FC = () => {
     return (
         <div className={'home-container'}>
             <Link to={'/customers/create'}>
-                <Button title={'Add'} additionalClassName={'header-container-btn'} onClick={() => resetForm()} />
+                <Button
+                    title={'Add'}
+                    additionalClassName={'header-container-btn'}
+                    onClick={() => resetForm()}
+                    disabled={false}
+                />
             </Link>
             <Customers />
         </div>
