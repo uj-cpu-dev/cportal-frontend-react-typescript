@@ -6,23 +6,34 @@ const useFetch = (url:any, param:string) => {
     const [isError, setIsError] = useState(false);
 
     useEffect(() => {
-        const getData = async() => {
+        const fetchData = async () => {
             setIsLoading(true);
             setIsError(false);
             try {
-                const fetchData = await fetch(url);
-                const data = await fetchData.json()
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const contentType = response.headers.get("content-type");
+                if (!contentType || !contentType.includes("application/json")) {
+                    throw new TypeError("Received non-JSON response");
+                }
+
+                const data = await response.json();
                 setData(data[param]);
                 setIsLoading(false);
                 setIsError(false);
-            } catch(error) {
+            } catch (error) {
                 setIsLoading(false);
                 setIsError(true);
-                throw new Error(`${error}`)
+                console.error("Error fetching data:", error);
             }
-        }
+        };
 
-        getData();
+        if(url && param)  fetchData();
+
     }, [url, param]);
 
      return [data, isLoading, isError];

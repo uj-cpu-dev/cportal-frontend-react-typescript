@@ -7,5 +7,7 @@ export interface FormType{
     inputName: string,
     formType:string,
     handleInputChange: (formParameter: string) => (event: ChangeEvent<HTMLInputElement>) => void;
+    inputTye:string,
+    selectData: any
 
 }

@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import {useGlobalContext} from "../../context/app-context";
 
 export const Home:React.FC = () => {
-    const {actions} = useGlobalContext();
-    const {resetForm} = actions;
+    const { actions} = useGlobalContext();
+    const { resetForm } = actions;
 
     return (
         <div className={'home-container'}>

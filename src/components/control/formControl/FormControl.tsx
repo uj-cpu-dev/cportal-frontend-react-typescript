@@ -3,7 +3,7 @@ import Form from "../form/Form";
 import {FormControlType} from "./formcontrol-type";
 import {formatForm} from "../../../util/formatter/formatform-helper";
 
-const FormControl:FC<FormControlType> = ( {data, additionalClassName, formValues, formType,handleInputChange }) => {
+const FormControl:FC<FormControlType> = ( {data, additionalClassName, formValues, formType,handleInputChange, inputTye }) => {
     const constructFormInput = (value: string, formType: string) => {
         return formType === 'billing_address' || formType === 'shipping_address'
             ? formValues['address'][formType][formatForm(value)]
@@ -14,16 +14,20 @@ const FormControl:FC<FormControlType> = ( {data, additionalClassName, formValues
         <div className={additionalClassName}>
             {
                 data &&
-                data.map((t, i) => {
+                data.map((t:any, i) => {
+                    const param = inputTye === 'input' ? t : t?.title;
+                    const selectData = inputTye === 'input' ? [] : t?.selectData;
                     return(
                         <Form
                             key={i}
                             additionalClassName={''}
-                            label={t}
-                            inputValue={constructFormInput(t, formType)}
-                            inputName={formatForm(t)}
+                            label={param}
+                            inputValue={constructFormInput(param, formType)}
+                            inputName={formatForm(param)}
                             formType={formType}
                             handleInputChange={handleInputChange}
+                            inputTye={inputTye}
+                            selectData={selectData}
                         />
                     )
                 })
