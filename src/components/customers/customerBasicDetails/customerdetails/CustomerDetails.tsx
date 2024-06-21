@@ -3,7 +3,7 @@ import './customerdetails.css';
 import DetailsTab from "../../../control/detailstab/DetailsTab";
 import { CustomerDetailsType } from "./customerdetails-type";
 
-const CustomerDetails:FC<CustomerDetailsType> = ({title, img}) => {
+const CustomerDetails:FC<CustomerDetailsType> = ({title, img, address}) => {
 
     return(
         <div className={'billing-details-container'}>
@@ -12,11 +12,11 @@ const CustomerDetails:FC<CustomerDetailsType> = ({title, img}) => {
                 <h3> {title} </h3>
             </div>
             <div className={'billing-details-content'}>
-                <DetailsTab title={'Country'} text={'United States'} />
-                <DetailsTab title={'Country'} text={'United States'} />
-                <DetailsTab title={'Country'} text={'United States'} />
-                <DetailsTab title={'Country'} text={'United States'} />
-                <DetailsTab title={'Country'} text={'United States'} />
+                <DetailsTab title={'Country'} text={address?.country} />
+                <DetailsTab title={'State'} text={address?.state} />
+                <DetailsTab title={'City'} text={address?.city} />
+                <DetailsTab title={'Address'} text={address?.street} />
+                <DetailsTab title={'Tax ID'} text={'EU87956621'} />
             </div>
         </div>
     )

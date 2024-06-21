@@ -1,26 +1,31 @@
 export const formatPhoneNumber = (phoneNumber:string) => {
-    const phoneStr = phoneNumber.toString();
-    return phoneStr.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+    if(phoneNumber?.length === 10){
+        const phoneStr = phoneNumber.toString();
+        return phoneStr.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2 -$3');
+    }
+    return '(000) 000 - 0000'
 }
+export const formatDateString = (dateString:any) => {
+    const date = new Date(dateString);
 
-export const formatDateString = (inputDate:string) => {
-    const [month, day, year] = inputDate.split('/').map(Number);
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
 
-    const date = new Date(year, month - 1, day);
+    const dayOfWeek = days[date.getUTCDay()];
+    const day = date.getUTCDate();
+    const month = months[date.getUTCMonth()];
+    const year = date.getUTCFullYear();
 
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    const monthName = monthNames[date.getMonth()];
+    let hours = date.getUTCHours();
+    const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+    const period = hours >= 12 ? 'PM' : 'AM';
 
-    const dayFormatted = date.getDate();
-    const yearFormatted = date.getFullYear();
+    hours = hours % 12 || 12;
 
-    const hours = 23;
-    const minutes = 0;
-    const hoursFormatted = hours % 12 || 12;
-    const minutesFormatted = String(minutes).padStart(2, '0');
-    const amPm = hours >= 12 ? 'PM' : 'AM';
-
-    return `${monthName} ${dayFormatted}, ${yearFormatted} ${hoursFormatted}:${minutesFormatted} ${amPm}`;
+    return `${dayOfWeek}, ${month} ${day}, ${year} at ${hours}:${minutes} ${period}`;
 }
 
 

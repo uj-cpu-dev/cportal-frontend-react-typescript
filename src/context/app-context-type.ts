@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, {Dispatch, SetStateAction, ChangeEvent} from "react";
 
 export interface ContextProps {
     children: React.ReactNode;
@@ -6,10 +6,18 @@ export interface ContextProps {
 
 interface GlobalState {
     customers: Customers[];
+    eachCustomer: Customers;
+    deleteModal: any,
 }
 
 interface GlobalActions {
-    setCustomers: Dispatch<SetStateAction<any[]>>
+    setEachCustomer: Dispatch<SetStateAction<any[]>>
+    handleInputChange: (formParameter: string) => (event: ChangeEvent<HTMLInputElement>) => void;
+    resetForm: () => void;
+    dispatch: any,
+    openDeleteModal: () => void,
+    closeDeleteModal: () => void,
+    generateId: () => number
 }
 
 export interface GlobalContextValue {
@@ -23,35 +31,25 @@ export interface Customers {
     phone: string,
     email: string,
     quota: number,
-    createdAt: string,
-    status: string
+    createdAt: string | any,
+    status: string,
+    address: any,
+    company_name: string
 }
 
-export const customersData:Customers[] = [{
-    id: 1,
-    name: 'John Doe',
-    phone: '5147897780',
-    email: 'jdoe@gmail.com',
-    quota: 50,
-    createdAt: '10/04/2021',
-    status: 'Active'
-},
-    {
-        id: 2,
-        name: 'Jane Doe',
-        phone: '5147897780',
-        email: 'jdoe@gmail.com',
-        quota: 50,
-        createdAt: '10/04/2021',
-        status: 'Blocked'
+const generateRandomQuotaNumber = (min = 50.00, max = 100.00) => {
+    return (Math.random() * (max - min) + min).toFixed(2);
+}
+
+export const initialFormState = {
+    address: {
+        billing_address: {},
+        shipping_address: {}
     },
-    {
-        id: 3,
-        name: 'Jennie Doe',
-        phone: '5147897780',
-        email: 'jdoe@gmail.com',
-        quota: 50,
-        createdAt: '10/04/2021',
-        status: 'Pending'
-    }
-]
+    createdAt: new Date(),
+    quota: parseInt(generateRandomQuotaNumber())
+}
+
+export const initialDeleteModalState = {
+    isOpen:false,
+}
