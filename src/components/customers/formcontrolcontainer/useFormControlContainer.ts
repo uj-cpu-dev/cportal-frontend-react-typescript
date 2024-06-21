@@ -7,7 +7,7 @@ const useFormControlContainer = () => {
     const [shouldShowShippingForm, setShouldShowShippingForm] = useState(false);
     const { state, actions} = useGlobalContext()
     const { eachCustomer} = state;
-    const { dispatch, generateId} = actions;
+    const { dispatch, generateId, setEachCustomer} = actions;
     const navigate = useNavigate();
     const { sendRequest } = useApi();
     const payload = {
@@ -47,7 +47,34 @@ const useFormControlContainer = () => {
         }
 
         navigate('/')
-        return null;
+        return;
+    }
+
+    const updateFormAddress = (isChecked:boolean = false) => {
+        if(isChecked){
+           setEachCustomer((prevState:any) => ({
+               ...prevState,
+               address: {
+                   ...prevState?.address,
+                   shipping_address: {
+                       street: prevState?.address?.billing_address?.street,
+                       city: prevState?.address?.billing_address?.city,
+                       state: prevState?.address?.billing_address?.state,
+                       zipcode: prevState?.address?.billing_address?.zipcode,
+                       country: prevState?.address?.billing_address?.zipcode
+                   }
+               }
+           }))
+        } else {
+            setEachCustomer((prevState:any) => ({
+                ...prevState,
+                address: {
+                    ...prevState?.address,
+                    shipping_address: {}
+                }
+            }))
+        }
+        setShouldShowShippingForm(isChecked);
     }
 
 
@@ -55,7 +82,8 @@ const useFormControlContainer = () => {
         shouldShowShippingForm,
         setShouldShowShippingForm,
         renderButtonText,
-        formUtil
+        formUtil,
+        updateFormAddress
     }
 }
 

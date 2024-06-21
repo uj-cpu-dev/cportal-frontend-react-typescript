@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import { ContextProps, GlobalContextValue, Customers, initialFormState, initialDeleteModalState} from "./app-context-type";
 import useCustomers from "../hooks/useCustomers";
+import useFetch from "../hooks/useFetch";
 
 
 const GlobalContext = createContext<GlobalContextValue | null>(null);

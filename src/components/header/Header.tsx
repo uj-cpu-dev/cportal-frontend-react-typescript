@@ -2,12 +2,10 @@ import React, { FC, useState } from 'react';
 import Button from "../control/button/Button";
 import './header.css';
 import { HeaderType } from "./header-type";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Header:FC<HeaderType> = ({ showButton, btnText, onEditClick, openDeleteModal}) => {
+const Header:FC<HeaderType> = ({ showButton, btnText, onEditClick, openDeleteModal, handleBackClick}) => {
     const [showDropdown, setShowDropdown] = useState(false);
-    const navigate = useNavigate();
-    const handleBackClick = () => navigate(-1);
 
     const updateCustomerOnClick = () => {
         setShowDropdown(false);

@@ -4,14 +4,15 @@ import Checkbox from "../../control/checkbox/Checkbox";
 import Button from "../../control/button/Button";
 import useFormControlContainer from "./useFormControlContainer";
 import './formcontrolcontainer.css'
-import {formValidator} from "../../../util/formvalidator";
+import { formValidator } from "../../../util/formvalidator";
+import { FormControlContainerType } from "./formcontrolcontainer-type";
 
-const FormControlContainer:FC<{data: any, handleInputChange:any}> = ( { data, handleInputChange } ) => {
+const FormControlContainer:FC<FormControlContainerType> = ( { data, handleInputChange, handleBackClick } ) => {
     const {
         shouldShowShippingForm,
-        setShouldShowShippingForm,
         renderButtonText,
-        formUtil
+        formUtil,
+        updateFormAddress
     } = useFormControlContainer();
 
     return(
@@ -31,15 +32,14 @@ const FormControlContainer:FC<{data: any, handleInputChange:any}> = ( { data, ha
                 additionalClassName={'form-control-container'}/>
             <h3>Shipping Information</h3>
             <div className={'same-as-billing-container'}>
-                <Checkbox label={'Same as billing address'} isChecked={shouldShowShippingForm} onChange={(e) => setShouldShowShippingForm(e.target.checked)}  />
+                <Checkbox label={'Same as billing address'} isChecked={shouldShowShippingForm} onChange={(e) => updateFormAddress(e.target.checked)}  />
             </div>
-            {shouldShowShippingForm &&
-                <FormControl
-                    data={["Country*", "State*", "City*", "Zipcode", "Address*", "Tax ID"]}
-                    formValues={data}
-                    formType={'shipping_address'}
-                    handleInputChange={handleInputChange}
-                    additionalClassName={'form-control-container'}/>}
+            <FormControl
+                data={["Country*", "State*", "City*", "Zipcode", "Address*", "Tax ID"]}
+                formValues={data}
+                formType={'shipping_address'}
+                handleInputChange={handleInputChange}
+                additionalClassName={'form-control-container'}/>
             <h3>Additional Information</h3>
             <FormControl
                 data={["Timezone*", "Language*", "Currency*"]}
@@ -51,7 +51,7 @@ const FormControlContainer:FC<{data: any, handleInputChange:any}> = ( { data, ha
                 <Button
                     title={'Cancel'}
                     additionalClassName={''}
-                    onClick={() => console.log('testing')}
+                    onClick={() => () => handleBackClick()}
                     disabled={false}
                 />
                 <Button

@@ -14,10 +14,10 @@ const useFetch = (url:any, param:string) => {
             setData(data[param]);
             setIsLoading(false);
             setIsError(false);
-        } catch {
+        } catch(error) {
             setIsLoading(false);
             setIsError(true);
-            throw new Error('There was an error, kindly try again')
+            throw new Error(`${error}`)
         }
     }
 
