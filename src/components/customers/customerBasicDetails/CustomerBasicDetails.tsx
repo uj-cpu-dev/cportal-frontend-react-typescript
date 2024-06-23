@@ -8,6 +8,8 @@ import House from '../../../images/house.png'
 import {CustomerBasicDetailsType} from "./customerbasicdetails-type";
 
 const CustomerBasicDetails:FC<CustomerBasicDetailsType> =( { data, updateEachCustomer } ) => {
+    const dataAddress = data && JSON.parse(data?.address)
+
     return(
         <div className={'customer-basics-container'}>
             <div className={'customer-basics-content'}>
@@ -15,8 +17,8 @@ const CustomerBasicDetails:FC<CustomerBasicDetailsType> =( { data, updateEachCus
                 <DeleteAccount updateEachCustomer={updateEachCustomer} />
             </div>
             <div className={'customer-billing-container'}>
-                <CustomerDetails title={"Billing details"} img={CreditCard} address={data?.address?.billing_address} />
-                <CustomerDetails title={"Shipping details"} img={House} address={data?.address?.shipping_address} />
+                <CustomerDetails title={"Billing details"} img={CreditCard} address={dataAddress?.billing_address || {}} />
+                <CustomerDetails title={"Shipping details"} img={House} address={dataAddress?.shipping_address || {}} />
             </div>
         </div>
     )

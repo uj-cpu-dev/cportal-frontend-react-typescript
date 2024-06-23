@@ -17,7 +17,8 @@ interface GlobalActions {
     dispatch: any,
     openDeleteModal: () => void,
     closeDeleteModal: () => void,
-    generateId: () => number
+    generateId: () => number,
+    updateEachCustomer: (customer:Customers) => void;
 }
 
 export interface GlobalContextValue {
@@ -34,7 +35,7 @@ export interface Customers {
     createdAt: string | any,
     status: string,
     address: any,
-    company_name: string
+    company_name: string,
 }
 
 const generateRandomQuotaNumber = (min = 50.00, max = 100.00) => {

@@ -18,9 +18,18 @@ const CustomerUtil:FC = () => {
     const { eachCustomer} = state;
     const { setEachCustomer, handleInputChange, openDeleteModal} = actions;
     const navigate = useNavigate();
+
     const handleBackClick = () => navigate(-1);
 
-    const updateEachCustomer = () => data && setEachCustomer(data?.customer);
+    const updateEachCustomer = () => {
+        if(data){
+            const address = JSON.parse(data?.customer?.address)
+            setEachCustomer({
+                ...data?.customer,
+                address: address
+            })
+        }
+    }
 
     return(
         <>
@@ -33,7 +42,13 @@ const CustomerUtil:FC = () => {
             />
             <div className={'customers-container'}>
                 <h3>Account Information</h3>
-                <CustomerAvatar isOnView={id} name={data?.customer?.name || ''} email={data?.customer?.email || ''}/>
+                <CustomerAvatar
+                    isOnView={id}
+                    name={data?.customer?.name || ''}
+                    email={data?.customer?.email || ''}
+                    eachCustomer={data?.customer}
+                    setEachCustomer={setEachCustomer}
+                />
                 {   id ?
                     <CustomerBasicDetails
                         data={data?.customer}

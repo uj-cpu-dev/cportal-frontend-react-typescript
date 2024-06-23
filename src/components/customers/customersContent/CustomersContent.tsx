@@ -4,6 +4,8 @@ import './customerscontent.css'
 import Customer from "./customer/Customer";
 
 const CustomersContent: FC<CustomersContentType> = ({customers}) => {
+
+
     return (
         <>
             {

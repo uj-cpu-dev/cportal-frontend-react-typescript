@@ -10,9 +10,9 @@ const useFormControlContainer = () => {
     const { dispatch, generateId, setEachCustomer} = actions;
     const navigate = useNavigate();
     const { sendRequest } = useApi();
-    const payload = {
+    const payload:any = {
         ...eachCustomer,
-        id: generateId()
+        //id: generateId()
     }
 
     const renderButtonText = () => {
@@ -34,7 +34,16 @@ const useFormControlContainer = () => {
     const updateCustomer = () => dispatch({type: "UPDATE_CUSTOMER", payload: payload})
 
     const sendRequestUtil = (url:string, method: string, callBack: () => void) => {
-        sendRequest(url, method, payload).then(r => callBack()).catch(e => console.log(e))
+        const formData = new FormData();
+        formData.append('id', method === 'POST' ? generateId().toString() : eachCustomer?.id.toString());
+        for (const key in eachCustomer) {
+            if(key === 'address'){
+                formData.append(key, JSON.stringify(eachCustomer[key]));
+            } else {
+                formData.append(key, payload[key]);
+            }
+        }
+        sendRequest(url, method, formData).then(r => callBack()).catch(e => console.log(e))
     }
 
     const formUtil = () => {
@@ -46,7 +55,7 @@ const useFormControlContainer = () => {
             sendRequestUtil(`http://localhost:4000/customers/${eachCustomer?.id}`, 'PUT', updateCustomer)
         }
 
-        navigate('/')
+        navigate('/');
         return;
     }
 

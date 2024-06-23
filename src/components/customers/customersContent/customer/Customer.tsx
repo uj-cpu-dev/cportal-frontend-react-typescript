@@ -9,8 +9,12 @@ import {formatDateString, formatPhoneNumber} from "../../../../util/formatter/fo
 import {Link} from "react-router-dom";
 import EditIcon from '../../../../images/edit.png';
 import Status from "../../../control/status/Status";
+import {useGlobalContext} from "../../../../context/app-context";
 
-const Customer:FC<Customers> = ( {id, name, email, quota, phone, createdAt, status } ) => {
+const Customer:FC<Customers> = ( props ) => {
+    const {id, name, email, quota, phone, createdAt, status } = props;
+    const {actions} = useGlobalContext();
+    const {updateEachCustomer} = actions;
 
     return (
         <tr>
@@ -34,7 +38,7 @@ const Customer:FC<Customers> = ( {id, name, email, quota, phone, createdAt, stat
             </td>
             <td>
                 <Link to={`customers/${id}`} className={'edit-button'}>
-                    <img src={EditIcon} alt={'edit-icon-logo'} className={'edit-icon-logo'} />
+                    <img src={EditIcon} alt={'edit-icon-logo'} className={'edit-icon-logo'} onClick={() => updateEachCustomer(props)} />
                 </Link>
             </td>
         </tr>

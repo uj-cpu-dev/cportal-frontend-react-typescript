@@ -2,7 +2,7 @@ import {useCallback, useState} from 'react';
 
 interface FetchOptions {
     method: string;
-    headers: { [key: string]: string };
+    //headers: { [key: string]: string };
     body?: string | null;
 }
 
@@ -17,18 +17,14 @@ const useApi = () => {
         try {
             const options: FetchOptions = {
                 method: method,
-                headers: {
-                    "Content-Type": "application/json",
-                },
             };
 
             if (requestData) {
-                options.body = JSON.stringify(requestData);
+                options.body = requestData;
             } else {
                 options.body = null;
             }
 
-            // For DELETE requests, body should not be included
             if (method === 'DELETE') {
                 delete options.body;
             }
@@ -40,11 +36,10 @@ const useApi = () => {
                 throw new Error(`HTTP error! Status: ${response.status} - ${errorMessage}`);
             }
 
-            return await response.json(); // Returning result can be useful for further processing
+            return await response.json();
         } catch (error) {
             console.error("Error:", error);
             setError(error as Error);
-            // Optionally, rethrow the error if you want it to be handled by the caller
             throw error;
         } finally {
             setLoading(false);

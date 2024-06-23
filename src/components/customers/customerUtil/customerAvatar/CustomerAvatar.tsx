@@ -4,15 +4,16 @@ import CameraImage from '../../../../images/camera.png'
 import FileInput from "../../../control/fileInput/FileInput";
 import {CustomerAvatarType} from "./customeravatar-type";
 import Status from "../../../control/status/Status";
+import useCustomerAvatar from "./hooks/useCustomerAvatar";
 
-const CustomerAvatar:FC<CustomerAvatarType> = ( { isOnView, name, email } ) => {
-
+const CustomerAvatar:FC<CustomerAvatarType> = ( { isOnView, name, email, setEachCustomer, eachCustomer } ) => {
+    const {imgSrc, updatingImg, avatarClass, updateImgSrc} = useCustomerAvatar(eachCustomer, setEachCustomer);
     const renderFileInput = () => {
         return(
             <>
                 <p>Avatar</p>
                 <p> Min 400x400px, PNG or JPEG </p>
-                <FileInput/>
+                <FileInput handleInputChange={updateImgSrc}/>
             </>
         )
     }
@@ -30,7 +31,11 @@ const CustomerAvatar:FC<CustomerAvatarType> = ( { isOnView, name, email } ) => {
     return (
         <div className={'customer-avatar-container'}>
             <div className={'customer-avatar'}>
-                <img src={CameraImage} alt={'camera-logo'}/>
+                <img
+                    src={imgSrc ? (updatingImg ? URL.createObjectURL(imgSrc) : imgSrc) : CameraImage}
+                    alt="camera-logo"
+                    style={imgSrc ? avatarClass : undefined}
+                />
             </div>
             <div className={'customer-avatar-content'}>
                 {isOnView ? renderCustomerDetails() : renderFileInput()}

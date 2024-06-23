@@ -43,6 +43,14 @@ const AppContext:FC<ContextProps> = ({children}) => {
 
     const generateId = () => customers[customers?.length - 1]?.id + 1 || 1;
 
+    const updateEachCustomer = (customer:Customers) => {
+        const address = JSON.parse(customer?.address);
+        setEachCustomer((prevState:Customers) => ({
+            ...prevState,
+            address: address
+        }))
+    }
+
     return(
         <GlobalContext.Provider value={{
             state: {
@@ -57,7 +65,8 @@ const AppContext:FC<ContextProps> = ({children}) => {
                 dispatch,
                 openDeleteModal,
                 closeDeleteModal,
-                generateId
+                generateId,
+                updateEachCustomer
             }
         }}>
             {children}

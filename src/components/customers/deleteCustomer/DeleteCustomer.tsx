@@ -15,6 +15,7 @@ const DeleteCustomer = () => {
     const removeCustomer = () => {
         dispatch({type: "DELETE_CUSTOMER", payload: {id: eachCustomer?.id}});
         navigate('/');
+        closeDeleteModal();
     }
     const deleteCustomer = () => {
         sendRequest(`http://localhost:4000/customers/${eachCustomer?.id}`, 'DELETE').then(r => removeCustomer()).catch(e => console.log(e))
