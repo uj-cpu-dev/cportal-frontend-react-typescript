@@ -6,7 +6,7 @@ import useFormControlContainer from "./useFormControlContainer";
 import './formcontrolcontainer.css'
 import { formValidator } from "../../../util/formvalidator";
 import { FormControlContainerType } from "./formcontrolcontainer-type";
-import {addressInfoData, extraInfoData, personInfoData} from "./formcontrolcontainerdata";
+import { addressInfoData, extraInfoData, personInfoData } from "./formcontrolcontainerdata";
 
 const FormControlContainer:FC<FormControlContainerType> = ( { data, handleInputChange, handleBackClick } ) => {
     const {

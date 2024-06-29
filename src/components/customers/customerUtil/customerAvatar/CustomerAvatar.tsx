@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, {FC} from 'react';
 import './customeravatar.css'
 import CameraImage from '../../../../images/camera.png'
 import FileInput from "../../../control/fileInput/FileInput";
@@ -6,8 +6,8 @@ import {CustomerAvatarType} from "./customeravatar-type";
 import Status from "../../../control/status/Status";
 import useCustomerAvatar from "./hooks/useCustomerAvatar";
 
-const CustomerAvatar:FC<CustomerAvatarType> = ( { isOnView, name, email, setEachCustomer, eachCustomer } ) => {
-    const {imgSrc, updatingImg, avatarClass, updateImgSrc} = useCustomerAvatar(eachCustomer, setEachCustomer);
+const CustomerAvatar:FC<CustomerAvatarType> = ( { isOnView, name, email, filedata, filetype} ) => {
+    const {imgSrc, updatingImg, avatarClass, updateImgSrc} = useCustomerAvatar(filedata, filetype);
     const renderFileInput = () => {
         return(
             <>
@@ -34,6 +34,7 @@ const CustomerAvatar:FC<CustomerAvatarType> = ( { isOnView, name, email, setEach
                 <img
                     src={imgSrc ? (updatingImg ? URL.createObjectURL(imgSrc) : imgSrc) : CameraImage}
                     alt="camera-logo"
+                    className={'upload-img'}
                     style={imgSrc ? avatarClass : undefined}
                 />
             </div>

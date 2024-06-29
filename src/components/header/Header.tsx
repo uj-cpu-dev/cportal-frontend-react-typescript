@@ -4,7 +4,7 @@ import './header.css';
 import { HeaderType } from "./header-type";
 import { Link } from "react-router-dom";
 
-const Header:FC<HeaderType> = ({ showButton, btnText, onEditClick, openDeleteModal, handleBackClick}) => {
+const Header:FC<HeaderType> = ({ id, showButton, btnText, onEditClick, openDeleteModal, handleBackClick}) => {
     const [showDropdown, setShowDropdown] = useState(false);
 
     const updateCustomerOnClick = () => {
@@ -23,7 +23,7 @@ const Header:FC<HeaderType> = ({ showButton, btnText, onEditClick, openDeleteMod
             <div className={'header-button-side-container'}>
                 {showButton && <Button disabled={false} onClick={() => setShowDropdown(!showDropdown)} title={btnText} additionalClassName={'header-container-btn'} />}
                 {(showButton && showDropdown) && <div className={'buttons-drop-down-container'}>
-                    <Link to={'/customers/edit'}>
+                    <Link to={`/customers/edit/${id}`} className={'edit-btn-link'}>
                         <button className={'edit-button'} onClick={() => updateCustomerOnClick()}> Edit</button>
                     </Link>
                     <button className={'delete-button'} onClick={() => shouldOpenDeleteModal()}> Delete</button>

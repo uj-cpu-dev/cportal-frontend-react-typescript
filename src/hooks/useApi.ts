@@ -1,8 +1,8 @@
-import {useCallback, useState} from 'react';
+import { useCallback, useState } from 'react';
 
 interface FetchOptions {
     method: string;
-    //headers: { [key: string]: string };
+    headers: { [key: string]: string };
     body?: string | null;
 }
 
@@ -17,16 +17,13 @@ const useApi = () => {
         try {
             const options: FetchOptions = {
                 method: method,
+                headers: {}
             };
 
             if (requestData) {
-                options.body = requestData;
+                options.body = requestData
             } else {
                 options.body = null;
-            }
-
-            if (method === 'DELETE') {
-                delete options.body;
             }
 
             const response = await fetch(url, options);

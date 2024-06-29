@@ -3,5 +3,6 @@ export interface HeaderType{
     btnText:string,
     onEditClick: () => void,
     openDeleteModal: () => void,
-    handleBackClick: () => void
+    handleBackClick: () => void,
+    id:string | undefined,
 }

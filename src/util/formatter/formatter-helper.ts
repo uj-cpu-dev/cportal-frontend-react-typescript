@@ -7,25 +7,16 @@ export const formatPhoneNumber = (phoneNumber:string) => {
 }
 export const formatDateString = (dateString:any) => {
     const date = new Date(dateString);
+    const options:any = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'UTC',
+    };
 
-    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const months = [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ];
-
-    const dayOfWeek = days[date.getUTCDay()];
-    const day = date.getUTCDate();
-    const month = months[date.getUTCMonth()];
-    const year = date.getUTCFullYear();
-
-    let hours = date.getUTCHours();
-    const minutes = date.getUTCMinutes().toString().padStart(2, '0');
-    const period = hours >= 12 ? 'PM' : 'AM';
-
-    hours = hours % 12 || 12;
-
-    return `${dayOfWeek}, ${month} ${day}, ${year} at ${hours}:${minutes} ${period}`;
+    return dateString ? date.toLocaleDateString('en-US', options) : new Date();
 }
 
 

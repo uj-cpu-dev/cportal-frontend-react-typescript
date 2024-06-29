@@ -12,17 +12,24 @@ import Status from "../../../control/status/Status";
 import {useGlobalContext} from "../../../../context/app-context";
 
 const Customer:FC<Customers> = ( props ) => {
-    const {id, name, email, quota, phone, createdAt, status } = props;
+    const {id, name, email, quota, phone, createdAt, status, filedata, filetype, filename, file, updatedAt, isChecked } = props;
     const {actions} = useGlobalContext();
-    const {updateEachCustomer} = actions;
+    const {updateEachCustomer, transformImageToImageType, dispatch} = actions;
 
     return (
         <tr>
             <td>
-                <Checkbox label={''} isChecked={false} onChange={() => console.log('testing')} />
+                <Checkbox label={''} isChecked={isChecked} onChange={() => dispatch({type: "CHECK_CUSTOMER", payload: props})}/>
             </td>
             <td>
-                <CustomerProfile name={name} email={email}/>
+                <CustomerProfile
+                    name={name} email={email}
+                    filetype={filetype}
+                    filename={filename}
+                    filedata={filedata}
+                    transformImageToImageType={transformImageToImageType}
+                    file={file}
+                />
             </td>
             <td>
                 <CustomerQuota quota={quota}/>
@@ -34,11 +41,15 @@ const Customer:FC<Customers> = ( props ) => {
                 <Tab title={formatDateString(createdAt) || ''}/>
             </td>
             <td>
-                <Status status={status} />
+                <Tab title={formatDateString(updatedAt) || ''}/>
             </td>
             <td>
-                <Link to={`customers/${id}`} className={'edit-button'}>
-                    <img src={EditIcon} alt={'edit-icon-logo'} className={'edit-icon-logo'} onClick={() => updateEachCustomer(props)} />
+                <Status status={status}/>
+            </td>
+            <td>
+                <Link to={`customers/view/${id}`} className={'edit-button'}>
+                    <img src={EditIcon} alt={'edit-icon-logo'} className={'edit-icon-logo'}
+                         onClick={() => updateEachCustomer(props)}/>
                 </Link>
             </td>
         </tr>

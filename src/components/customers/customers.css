@@ -9,8 +9,6 @@
 }
 
 .customer-select{
-    position:absolute;
-    right:10px;
     padding:5px 10px;
     border-radius: 10px;
     border: 0.75px solid rgb(118, 118, 118);
@@ -23,4 +21,21 @@
 .customers-top-container{
     display:flex;
     align-items: center;
+}
+
+.select-delete-container{
+    display:flex;
+    position:absolute;
+    right:10px;
+    align-items: center;
+}
+
+.select-delete-container button{
+    background: #de3024;
+    color: #fff;
+    padding: 7px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right:7px;
 }

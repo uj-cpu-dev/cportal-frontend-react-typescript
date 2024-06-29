@@ -23,10 +23,10 @@ export const formatForm = (formValue:string) => {
         case "State*":
             value = 'state'
             break;
-        case "Zipcode":
+        case "Zipcode*":
             value = 'zipcode'
             break;
-        case "Address*":
+        case "Street*":
             value = 'street'
             break;
         default:
