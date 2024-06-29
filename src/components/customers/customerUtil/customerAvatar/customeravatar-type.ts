@@ -1,5 +1,9 @@
+
+
 export interface CustomerAvatarType{
-    isOnView:string | undefined,
+    isOnView:boolean | undefined,
     name:string,
-    email:string
+    email:string,
+    filetype:string,
+    filedata:any
 }

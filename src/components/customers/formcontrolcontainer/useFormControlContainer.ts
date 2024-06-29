@@ -1,20 +1,16 @@
 import { useState } from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useApi from "../../../hooks/useApi";
 import { useGlobalContext } from "../../../context/app-context";
+import { Customers } from "../../../context/app-context-type";
 
 const useFormControlContainer = () => {
     const [shouldShowShippingForm, setShouldShowShippingForm] = useState(false);
-    const { state, actions} = useGlobalContext()
-    const { eachCustomer} = state;
-    const { dispatch, generateId, setEachCustomer} = actions;
+    const { state, actions} = useGlobalContext();
+    const { eachCustomer, generateNewId} = state;
+    const { dispatch, setEachCustomer} = actions;
     const navigate = useNavigate();
     const { sendRequest } = useApi();
-    const payload = {
-        ...eachCustomer,
-        id: generateId()
-    }
-
     const renderButtonText = () => {
         const url =  window.location.pathname;
         let btnText = '';
@@ -29,16 +25,27 @@ const useFormControlContainer = () => {
         return btnText;
     }
 
-    const createCustomer = () =>  dispatch({type: "CREATE_CUSTOMER", payload: payload})
+    const createCustomer = (customer:Customers) =>  dispatch({type: "CREATE_CUSTOMER", payload: customer});
+    const updateCustomer = (customer:Customers) => dispatch({type: "UPDATE_CUSTOMER", payload: {...customer, updatedAt: new Date()}});
+    const sendRequestUtil = (url:string, method: string, callBack: (customer:Customers) => void) => {
+        const payload:any = {
+            ...eachCustomer,
+            file: eachCustomer?.file,
+            id: method === 'POST' ? generateNewId : eachCustomer?.id,
+        }
 
-    const updateCustomer = () => dispatch({type: "UPDATE_CUSTOMER", payload: payload})
-
-    const sendRequestUtil = (url:string, method: string, callBack: () => void) => {
-        sendRequest(url, method, payload).then(r => callBack()).catch(e => console.log(e))
+        const formData = new FormData();
+        for (const key in payload) {
+            if(key === 'address'){
+                formData.append(key, JSON.stringify(payload[key]));
+            } else {
+                formData.append(key, payload[key]);}
+        }
+        sendRequest(url, method, formData).then(r => callBack(payload)).catch(e => console.log(e))
     }
 
     const formUtil = () => {
-        if(renderButtonText() === 'Create Customer'){
+       if(renderButtonText() === 'Create Customer'){
             sendRequestUtil('http://localhost:4000/customers', 'POST', createCustomer)
         }
 
@@ -46,7 +53,7 @@ const useFormControlContainer = () => {
             sendRequestUtil(`http://localhost:4000/customers/${eachCustomer?.id}`, 'PUT', updateCustomer)
         }
 
-        navigate('/')
+        navigate('/');
         return;
     }
 
@@ -61,7 +68,7 @@ const useFormControlContainer = () => {
                        city: prevState?.address?.billing_address?.city,
                        state: prevState?.address?.billing_address?.state,
                        zipcode: prevState?.address?.billing_address?.zipcode,
-                       country: prevState?.address?.billing_address?.zipcode
+                       country: prevState?.address?.billing_address?.country
                    }
                }
            }))
@@ -76,7 +83,6 @@ const useFormControlContainer = () => {
         }
         setShouldShowShippingForm(isChecked);
     }
-
 
     return{
         shouldShowShippingForm,

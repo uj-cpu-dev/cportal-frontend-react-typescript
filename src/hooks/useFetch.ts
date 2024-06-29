@@ -32,7 +32,9 @@ const useFetch = (url:any, param:string) => {
             }
         };
 
-        if(url && param)  fetchData();
+        if(url && param) {
+            fetchData();
+        }
 
     }, [url, param]);
 

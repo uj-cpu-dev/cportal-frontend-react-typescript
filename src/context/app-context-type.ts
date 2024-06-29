@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction, ChangeEvent} from "react";
+import React, { Dispatch, SetStateAction, ChangeEvent } from "react";
 
 export interface ContextProps {
     children: React.ReactNode;
@@ -8,6 +8,7 @@ interface GlobalState {
     customers: Customers[];
     eachCustomer: Customers;
     deleteModal: any,
+    generateNewId: number | null,
 }
 
 interface GlobalActions {
@@ -17,7 +18,10 @@ interface GlobalActions {
     dispatch: any,
     openDeleteModal: () => void,
     closeDeleteModal: () => void,
-    generateId: () => number
+    updateEachCustomer: (customer:Customers) => void;
+    transformImageToImageType: (fileData: any, fileType: string) => string,
+    deleteAllCustomers:() => void;
+    transformImageFromBufferToFile:(data:number[]) => any;
 }
 
 export interface GlobalContextValue {
@@ -34,7 +38,13 @@ export interface Customers {
     createdAt: string | any,
     status: string,
     address: any,
-    company_name: string
+    company_name: string,
+    filename: string,
+    filetype: string,
+    filedata: any,
+    file: any,
+    updatedAt: string | any,
+    isChecked: boolean
 }
 
 const generateRandomQuotaNumber = (min = 50.00, max = 100.00) => {
@@ -47,6 +57,7 @@ export const initialFormState = {
         shipping_address: {}
     },
     createdAt: new Date(),
+    updatedAt: new Date(),
     quota: parseInt(generateRandomQuotaNumber())
 }
 

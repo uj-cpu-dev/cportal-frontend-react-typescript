@@ -6,8 +6,9 @@ import { Link } from "react-router-dom";
 import {useGlobalContext} from "../../context/app-context";
 
 export const Home:React.FC = () => {
-    const { actions} = useGlobalContext();
-    const { resetForm } = actions;
+    const { state, actions} = useGlobalContext();
+    const {customers} = state;
+    const { resetForm, deleteAllCustomers, dispatch } = actions;
 
     return (
         <div className={'home-container'}>
@@ -19,7 +20,11 @@ export const Home:React.FC = () => {
                     disabled={false}
                 />
             </Link>
-            <Customers />
+            <Customers
+                deleteAllCustomers={deleteAllCustomers}
+                customers={customers}
+                dispatch={dispatch}
+            />
         </div>
     )
 }

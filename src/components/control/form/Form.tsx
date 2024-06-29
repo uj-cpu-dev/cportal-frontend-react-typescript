@@ -12,7 +12,7 @@ const Form:FC<FormType> = ( { additionalClassName, label, inputValue, inputName,
                         ?
                         <input id={label} type={'text'} value={inputValue || ''} name={inputName} onChange={handleInputChange(formType)}/>
                         :
-                        <Select options={selectData} additionalClassName={''} />
+                        <Select options={selectData} additionalClassName={''} onChange={() => null}/>
                 }
             </>
         </div>

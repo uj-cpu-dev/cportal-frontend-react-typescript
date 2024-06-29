@@ -53,3 +53,7 @@
     padding:5px;
     cursor: pointer;
 }
+
+.edit-btn-link{
+    text-decoration: none;
+}
