@@ -13,7 +13,7 @@ const CustomerProfile:FC<CustomerProfileType> = ( { name, email, filedata, filet
         if(!filedata && !filetype && file){
             setImgSrc(URL.createObjectURL(file));
         }
-    }, [filedata, filetype, file]);
+    }, [filedata, filetype, file]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
     return(
