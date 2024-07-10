@@ -7,7 +7,7 @@ import { Customers } from "../../../context/app-context-type";
 const useFormControlContainer = () => {
     const [shouldShowShippingForm, setShouldShowShippingForm] = useState(false);
     const { state, actions} = useGlobalContext();
-    const { eachCustomer, generateNewId} = state;
+    const { eachCustomer, generateNewId, global_URL} = state;
     const { dispatch, setEachCustomer} = actions;
     const navigate = useNavigate();
     const { sendRequest } = useApi();
@@ -46,11 +46,11 @@ const useFormControlContainer = () => {
 
     const formUtil = () => {
        if(renderButtonText() === 'Create Customer'){
-            sendRequestUtil('http://localhost:4000/customers', 'POST', createCustomer)
+            sendRequestUtil(`${global_URL}/customers`, 'POST', createCustomer)
         }
 
         if(renderButtonText() === 'Update Customer'){
-            sendRequestUtil(`http://localhost:4000/customers/${eachCustomer?.id}`, 'PUT', updateCustomer)
+            sendRequestUtil(`${global_URL}/customers/${eachCustomer?.id}`, 'PUT', updateCustomer)
         }
 
         navigate('/');

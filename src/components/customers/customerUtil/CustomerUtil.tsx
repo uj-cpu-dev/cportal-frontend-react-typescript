@@ -12,11 +12,11 @@ import DeleteCustomer from "../deleteCustomer/DeleteCustomer";
 
 const CustomerUtil:FC = () => {
     const {id} = useParams();
-    const shouldFetchData = id && `http://localhost:4000/customers/${id}`;
-    const [data] = useFetch(shouldFetchData, 'data');
     const {state, actions} = useGlobalContext();
-    const { eachCustomer, customers} = state;
+    const { eachCustomer, customers, global_URL} = state;
     const { updateEachCustomer, handleInputChange, openDeleteModal } = actions;
+    const shouldFetchData = id && `${global_URL}/customers/${id}`;
+    const [data] = useFetch(shouldFetchData, 'data');
     const navigate = useNavigate();
     const location = useLocation();
     const shouldShowBasicDetailsOrForm = location.pathname.includes('view');

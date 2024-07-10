@@ -2,12 +2,12 @@ import React, { FC } from 'react';
 import './deleteaccount.css'
 import Button from "../../../control/button/Button";
 import Security from '../../../../images/security.png';
-import {useGlobalContext} from "../../../../context/app-context";
-import {DeleteAccountType} from "./deleteaccount-type";
+import { useGlobalContext } from "../../../../context/app-context";
+import { DeleteAccountType } from "./deleteaccount-type";
 
 const DeleteAccount:FC<DeleteAccountType> = ( { updateEachCustomer } ) => {
-    const {actions} = useGlobalContext();
-    const {openDeleteModal} = actions;
+    const { actions} = useGlobalContext();
+    const { openDeleteModal } = actions;
 
     const openModalAndUpdateCustomer = () => {
         openDeleteModal()

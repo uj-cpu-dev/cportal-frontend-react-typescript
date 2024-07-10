@@ -2,6 +2,8 @@ import { useEffect, useReducer, useState} from "react";
 import { Customers } from "../context/app-context-type";
 import useFetch from "./useFetch";
 
+const global_URL = 'http://127.0.0.1:55721';
+
 type reducerAction = {
     type: string,
     payload: any;
@@ -45,7 +47,7 @@ const reducer = (state:Customers[], action:reducerAction) => {
 
 const useCustomers = () => {
     const [customers, dispatch] = useReducer(reducer, []);
-    const [data] = useFetch('http://localhost:4000/customers', 'customers');
+    const [data] = useFetch(`${global_URL}/customers`, 'customers');
     const [generateNewId, setGenerateNewId] = useState<number | null>(null);
 
     useEffect(() => {
@@ -60,7 +62,8 @@ const useCustomers = () => {
     return {
         customers,
         dispatch,
-        generateNewId
+        generateNewId,
+        global_URL
     }
 }
 

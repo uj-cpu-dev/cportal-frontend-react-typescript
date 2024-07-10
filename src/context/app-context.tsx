@@ -15,7 +15,7 @@ const GlobalContext = createContext<GlobalContextValue | null>(null);
 
 const AppContext:FC<ContextProps> = ({children}) => {
     const [eachCustomer, setEachCustomer] = useState<Customers | any>(initialFormState);
-    const { customers, dispatch, generateNewId } = useCustomers();
+    const { customers, dispatch, generateNewId, global_URL } = useCustomers();
     const [deleteModal, setDeleteModal] = useState(initialDeleteModalState);
     const {handleDeleteSelectedCustomers} = useDeleteSelectedCustomersApi();
 
@@ -63,7 +63,7 @@ const AppContext:FC<ContextProps> = ({children}) => {
 
     const deleteAllCustomers = () => {
         const ids = customers?.filter(t => t?.isChecked)?.map(t => t?.id);
-        handleDeleteSelectedCustomers(ids)
+        handleDeleteSelectedCustomers(ids, global_URL)
             .then(r =>
             dispatch({type: "DELETE_ALL_CUSTOMERS", payload: ids}))
             .catch(e => console.log(e))
@@ -82,6 +82,7 @@ const AppContext:FC<ContextProps> = ({children}) => {
                 eachCustomer,
                 deleteModal,
                 generateNewId,
+                global_URL
             },
             actions: {
                 setEachCustomer,

@@ -4,7 +4,7 @@ interface FetchOptions {
     body?: any;
 }
 const useDeleteSelectedCustomersApi = () => {
-    const handleDeleteSelectedCustomers = async (ids: number[]) => {
+    const handleDeleteSelectedCustomers = async (ids: number[], url:string) => {
 
         try {
             const deleteOptions: FetchOptions = {
@@ -16,7 +16,7 @@ const useDeleteSelectedCustomersApi = () => {
                     ids: ids
                 })
             }
-            const response = await fetch('http://localhost:4000/customers/api/deleteAll', deleteOptions);
+            const response = await fetch(`${url}/customers/api/deleteAll`, deleteOptions);
 
             if (response.status === 200) {
                 console.log('Customers deleted successfully');

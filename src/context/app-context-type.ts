@@ -9,6 +9,7 @@ interface GlobalState {
     eachCustomer: Customers;
     deleteModal: any,
     generateNewId: number | null,
+    global_URL:string
 }
 
 interface GlobalActions {
