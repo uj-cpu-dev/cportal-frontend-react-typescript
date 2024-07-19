@@ -2,7 +2,7 @@ import { useEffect, useReducer, useState} from "react";
 import { Customers } from "../context/app-context-type";
 import useFetch from "./useFetch";
 
-const global_URL = 'http://127.0.0.1:56789';
+const global_URL = 'http://127.0.0.1:58578';
 
 type reducerAction = {
     type: string,
